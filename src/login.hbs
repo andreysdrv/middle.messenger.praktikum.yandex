@@ -18,11 +18,13 @@
 		<div class='wrapper'>
 			<form class='form' name='login'>
 				<h2 class='form__header'>Вход</h2>
-				{{> form-input type="text" id="login" name="login" placeholder="Логин" errorText="Неверный логин" }}
-				{{> form-input type="password" id="password" name="password" placeholder="Пароль"}}
+				<div class="form__body">
+					{{> form-input/form-input type="text" id="login" name="login" placeholder="Логин" errorText="Неверный логин" }}
+					{{> form-input/form-input type="password" id="password" name="password" placeholder="Пароль"}}
+				</div>
 				<div class='form__footer'>
-					<button type='submit' class='form__footer-button'>Авторизоваться</button>
-					{{!-- <a href='../signin/signin.hbs' class='form__footer-link'>Нет аккаунта?</a> --}}
+					<button type='submit' class='form__footer-button'>Войти</button>
+					<a href='signin.hbs' class='form__footer-link'>Ещё не зарегистрированы?</a>
 				</div>
 			</form>
 		</div>

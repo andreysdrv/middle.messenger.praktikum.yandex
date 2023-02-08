@@ -18,5 +18,23 @@
 			Signin page
 		</div>
 
+		<div class='wrapper'>
+			<form class='form' name='signin'>
+				<h2 class='form__header'>Регистрация</h2>
+				<div class='form__body'>
+					{{> form-input/form-input type="email" id="email" name="email" placeholder="Почта"  }}
+					{{> form-input/form-input type="text" id="login" name="login" placeholder="Логин"  }}
+					{{> form-input/form-input type="text" id="first_name" name="first_name" placeholder="Имя"  }}
+					{{> form-input/form-input type="text" id="second_name" name="second_name" placeholder="Фамилия"  }}
+					{{> form-input/form-input type="tel" id="phone" name="phone" placeholder="Телефон"  }}
+					{{> form-input/form-input type="password" id="password" name="password" placeholder="Пароль"}}
+					{{> form-input/form-input type="password" id="password_repeat" name="password" placeholder="Повторите пароль" errorText="Пароли не совпадают"}}
+				</div>
+				<div class='form__footer'>
+					<button type='submit' class='form__footer-button'>Создать аккаунт</button>
+					<a href='login.hbs' class='form__footer-link'>Войти</a>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>
