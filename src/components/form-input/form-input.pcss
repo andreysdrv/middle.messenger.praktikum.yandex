@@ -8,19 +8,27 @@
 	line-height: 100%;
 	font-weight: 500;
 	font-size: 13px;
-	padding: 7px 0;
-
+	padding: 0;
+	padding-bottom: 7px;
 	&::placeholder {
 		color: #999;
 	}
 
+	&-wrapper {
+		margin-bottom: 32px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
 	&-error {
+		display: block;
 		font-family: 'Inter', sans-serif;
 		color: #ff2f2f;
 		line-height: 100%;
 		font-weight: 400;
 		font-size: 8px;
 		margin-top: 7px;
-		margin-bottom: 16px;
 	}
 }

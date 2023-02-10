@@ -9,14 +9,16 @@
 			href='https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'
 			rel='stylesheet'
 		/>
-		<link href='./styles/index.pcss' rel='stylesheet' />
+		<link href='../styles/index.pcss' rel='stylesheet' />
 		<title>Awesome messenger</title>
 	</head>
 	<body>
-		<div>
-			<a href='index.hbs'>Home</a>
-			Signin page
-		</div>
-
+		<main>
+			<nav>
+				<a href='../index.hbs'>Home</a>
+				Profile page
+			</nav>
+			{{> error/error code="500" title="Мы уже фиксим" redirectPath="chat.hbs" redirectText="Назад к чатам"}}
+		</main>
 	</body>
 </html>
