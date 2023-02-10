@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Web messenger yandex - practicum project.",
 	"scripts": {
-		"dev": "parcel src/index.hbs",
+		"dev": "parcel src/index.hbs --no-cache",
 		"build": "parcel build src/index.hbs"
 	},
 	"repository": {

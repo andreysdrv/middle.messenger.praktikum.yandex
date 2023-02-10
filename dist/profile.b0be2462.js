@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"iYzab":[function(require,module,exports) {
+})({"drTmy":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "7967ccc300f4dfc7";
+module.bundle.HMR_BUNDLE_ID = "e0452c48b0be2462";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -556,8 +556,8 @@ function hmrAccept(bundle, id) {
     });
 }
 
-},{}],"ckTYs":[function(require,module,exports) {
+},{}],"bPjBy":[function(require,module,exports) {
 
-},{}]},["iYzab","ckTYs"], "ckTYs", "parcelRequirecc89")
+},{}]},["drTmy","bPjBy"], "bPjBy", "parcelRequirecc89")
 
-//# sourceMappingURL=project-sprint-1.00f4dfc7.js.map
+//# sourceMappingURL=profile.b0be2462.js.map
