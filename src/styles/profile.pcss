@@ -1,0 +1,142 @@
+.profile {
+	height: 100vh;
+	display: flex;
+
+	&__back-button {
+		width: 28px;
+		height: 28px;
+		background: url('../assets/arrow.svg') no-repeat center center #3369f3;
+		transform: rotate(180deg);
+		border: none;
+		outline: none;
+		border-radius: 50%;
+		transition: 0.175s;
+
+		&:hover {
+			cursor: pointer;
+			background-color: #274aa3;
+		}
+
+		&-wrapper {
+			width: 64px;
+			background-color: #fbfbfb;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-right: 1px solid #eaeaea;
+		}
+	}
+
+	&__info {
+		flex-grow: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__form {
+		min-width: 510px;
+		margin-bottom: 0;
+
+		&-avatar {
+			display: flex;
+			justify-content: center;
+			position: relative;
+
+			&-button {
+				padding: 0;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				top: 0;
+				border-radius: 50%;
+				width: 130px;
+				height: 130px;
+				object-fit: cover;
+				background-color: transparent;
+				border: none;
+				transition: 0.175s;
+
+				&:hover {
+					cursor: pointer;
+					background-color: rgba(0, 0, 0, 0.4);
+				}
+			}
+
+			&-img {
+				width: 130px;
+				height: 130px;
+				border-radius: 50%;
+				object-fit: cover;
+			}
+		}
+
+		&-header {
+			text-align: center;
+			margin: 21px 0 60px 0;
+			font-family: 'Inter', sans-serif;
+			color: #1e1e1e;
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 100%;
+		}
+
+		&-footer {
+			display: flex;
+			flex-direction: column;
+			margin-top: 32px;
+		}
+
+		&-link {
+			font-family: 'Inter', sans-serif;
+			color: #3369f3;
+			font-size: 13px;
+			font-weight: 500;
+			line-height: 100%;
+			text-decoration: none;
+			padding: 10px 0;
+			border-bottom: 1px solid #eaeaea;
+			transition: 0.175s;
+
+			&:hover {
+				cursor: pointer;
+				color: #274aa3;
+			}
+
+			&:last-child {
+				/* padding-bottom: 0; */
+				padding-top: 10px;
+				border-bottom: none;
+			}
+
+			&_color_red {
+				color: #ff0000;
+
+				&:hover {
+					color: #bd0202;
+				}
+			}
+		}
+
+		&-save-button {
+			align-self: center;
+			text-align: center;
+			font-family: 'Inter', sans-serif;
+			color: #fff;
+			line-height: 100%;
+			font-weight: 500;
+			font-size: 13px;
+			background-color: #3369f3;
+			padding: 12px 0;
+			border-radius: 8px;
+			border: none;
+			transition: 0.175s;
+			width: 280px;
+
+			&:hover {
+				cursor: pointer;
+				background-color: #274aa3;
+			}
+		}
+	}
+}

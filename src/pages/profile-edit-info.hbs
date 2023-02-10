@@ -25,11 +25,6 @@
 				</sidebar>
 				<div class='profile__info'>
 					<form name='settings' class='profile__form'>
-						<div class="profile__form-avatar">
-							<button type='button' class='profile__form-avatar-button'></button>
-							<img src="../assets/user.png" alt="Андрей" class='profile__form-avatar-img' >
-						</div>
-						<h2 class="profile__form-header">Андрей</h2>
 						<div class="profile__form-body">
 							{{> form-input/form-input type="email" id="email" name="email" placeholder="Почта"  }}
 							{{> form-input/form-input type="text" id="login" name="login" placeholder="Логин"  }}
@@ -39,9 +34,7 @@
 							{{> form-input/form-input type="tel" id="display_name" name="display_name" placeholder="Телефон"  }}
 						</div>
 						<div class="profile__form-footer">
-							<a href="profile-edit-info.hbs" class="profile__form-link">Изменить данные</a>
-							<a href="profile-edit-password.hbs" class="profile__form-link">Изменить пароль</a>
-							<a href="login.hbs" class="profile__form-link profile__form-link_color_red">Выйти</a>
+							<button class='profile__form-save-button'>Сохранить</button>
 						</div>
 					</form>
 				</div>
