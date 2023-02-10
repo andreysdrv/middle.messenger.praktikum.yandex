@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "parcel src/index.hbs",
 		"build": "parcel build src/index.hbs",
-		"start": "node src/server.js"
+		"start": "npm run build && node src/server.js"
 	},
 	"repository": {
 		"type": "git",
