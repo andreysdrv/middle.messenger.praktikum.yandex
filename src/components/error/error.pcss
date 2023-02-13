@@ -1,0 +1,41 @@
+@import '../../styles/variables.pcss';
+
+.error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	min-height: 100vh;
+
+	&__code {
+		color: $dark;
+
+		line-height: 100%;
+		font-weight: 500;
+		margin: 0;
+		font-size: 40px;
+	}
+
+	&__title {
+		color: $dark;
+
+		line-height: 100%;
+		font-weight: 500;
+		font-size: 20px;
+		margin: 20px 0 69px 0;
+	}
+
+	&__link {
+		color: $primary;
+
+		line-height: 100%;
+		font-weight: 500;
+		font-size: 11px;
+		text-decoration: none;
+
+		&:hover {
+			cursor: pointer;
+			color: $darken-primary;
+		}
+	}
+}

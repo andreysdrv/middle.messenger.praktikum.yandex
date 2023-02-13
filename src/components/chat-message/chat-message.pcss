@@ -1,0 +1,26 @@
+.chat__feed-message {
+	padding: 11px;
+	background-color: #f8f8f8;
+	color: $dark;
+
+	line-height: 125%;
+	font-weight: 500;
+	font-size: 12px;
+	border-radius: 8px;
+	border-top-left-radius: 0;
+	max-width: 402px;
+	box-sizing: border-box;
+	align-self: flex-start;
+	margin-bottom: 10px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&_outgoing {
+		background-color: #e4edfd;
+		border-radius: 8px;
+		border-bottom-right-radius: 0;
+		align-self: flex-end;
+	}
+}

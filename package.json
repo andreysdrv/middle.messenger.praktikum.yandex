@@ -1,0 +1,33 @@
+{
+	"name": "messenger-practicum",
+	"version": "1.0.0",
+	"description": "Web messenger yandex - practicum project.",
+	"scripts": {
+		"dev": "parcel src/index.hbs",
+		"build": "parcel build src/index.hbs",
+		"start": "npm run build && node src/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/andreysdrv/middle.messenger.praktikum.yandex.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/andreysdrv/middle.messenger.praktikum.yandex/issues"
+	},
+	"homepage": "https://github.com/andreysdrv/middle.messenger.praktikum.yandex#readme",
+	"devDependencies": {
+		"@anikin/parcel-transformer-handlebars": "1.0.9",
+		"autoprefixer": "10.4.13",
+		"parcel": "2.8.3",
+		"postcss": "8.4.21",
+		"postcss-import": "14.0.0",
+		"postcss-nested": "6.0.0",
+		"postcss-simple-vars": "7.0.1"
+	},
+	"dependencies": {
+		"express": "4.18.2",
+		"handlebars": "4.7.7"
+	}
+}

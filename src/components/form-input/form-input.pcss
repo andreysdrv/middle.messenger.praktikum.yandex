@@ -1,0 +1,36 @@
+@import '../../styles/variables.pcss';
+
+.form__input {
+	width: 100%;
+	outline: none;
+	border: none;
+	border-bottom: 1px solid $primary;
+
+	color: $dark;
+	line-height: 100%;
+	font-weight: 500;
+	font-size: 13px;
+	padding: 0;
+	padding-bottom: 7px;
+	&::placeholder {
+		color: $primary-gray;
+	}
+
+	&-wrapper {
+		margin-bottom: 32px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&-error {
+		display: block;
+
+		color: $danger;
+		line-height: 100%;
+		font-weight: 400;
+		font-size: 8px;
+		margin-top: 7px;
+	}
+}

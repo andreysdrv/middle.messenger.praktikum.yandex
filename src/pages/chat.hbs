@@ -1,0 +1,75 @@
+<html lang='ru'>
+	<head>
+		<meta charset='UTF-8' />
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+		<link rel='preconnect' href='https://fonts.googleapis.com' />
+		<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+		<link
+			href='https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'
+			rel='stylesheet'
+		/>
+		<link href='../styles/index.pcss' rel='stylesheet' />
+		<title>Awesome messenger</title>
+	</head>
+	<body>
+		<main>
+			<nav>
+				<a href='../index.hbs'>Home</a>
+				Chat page
+			</nav>
+			<div class='chat__layout'>
+				<sidebar class='chat__list'>
+					<div class='chat__list-header'>
+						<a href='profile.hbs' class='chat__list-header-link'>Профиль</a>
+						<input
+							type='search'
+							placeholder='Поиск'
+							class='chat__list-header-input'
+						/>
+					</div>
+					<ul class="chat__list-body">
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+						{{> chat-item/chat-item from='Андрей' message="Привет" timestamp="10:58" count="1" isIncoming=true }}
+						{{> chat-item/chat-item from='Алексей' message="И тебе привет" timestamp="9:30" count="1" isIncoming=false }}
+					</ul>
+				</sidebar>
+				<div class='chat__feed'>
+					<div class='chat__feed-header'>
+						<div class='chat__feed-user'>
+							<img src='../assets/user.png' alt='Андрей' class='chat__feed-user-img' />
+							<p class="chat__feed-user-name">Андрей</p>
+						</div>
+						<button class='chat__feed-actions' />
+					</div>
+					<ul class='chat__feed-body'>
+						{{> chat-message/chat-message isOutgoing=false message="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+						Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро."}}
+						{{> chat-message/chat-message isOutgoing=true message="Круто!"}}
+						{{> chat-message/chat-message isOutgoing=true message="Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+						Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро."}}
+						{{> chat-message/chat-message isOutgoing=false message="Круто!"}}
+					</ul>
+					<div class='chat__feed-footer'>
+						<form class='chat__feed-form' name='message'>
+							<button class='chat__feed-attach' />
+							<input type='text' name='message' id='message' placeholder='Сообщение' class='chat__feed-input' />
+							<button type='submit' class='chat__feed-send'/>
+						</form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
