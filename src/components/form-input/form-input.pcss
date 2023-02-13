@@ -1,17 +1,19 @@
+@import '../../styles/variables.pcss';
+
 .form__input {
 	width: 100%;
 	outline: none;
 	border: none;
-	border-bottom: 1px solid #3369f3;
+	border-bottom: 1px solid $primary;
 	font-family: 'Inter', sans-serif;
-	color: #1e1e1e;
+	color: $dark;
 	line-height: 100%;
 	font-weight: 500;
 	font-size: 13px;
 	padding: 0;
 	padding-bottom: 7px;
 	&::placeholder {
-		color: #999;
+		color: $primary-gray;
 	}
 
 	&-wrapper {
@@ -25,7 +27,7 @@
 	&-error {
 		display: block;
 		font-family: 'Inter', sans-serif;
-		color: #ff2f2f;
+		color: $danger;
 		line-height: 100%;
 		font-weight: 400;
 		font-size: 8px;
