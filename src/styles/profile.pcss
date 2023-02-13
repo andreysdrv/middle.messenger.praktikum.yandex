@@ -1,3 +1,5 @@
+@import '../styles/variables.pcss';
+
 .profile {
 	height: 100vh;
 	display: flex;
@@ -5,7 +7,7 @@
 	&__back-button {
 		width: 28px;
 		height: 28px;
-		background: url('../assets/arrow.svg') no-repeat center center #3369f3;
+		background: url('../assets/arrow.svg') no-repeat center center $primary;
 		transform: rotate(180deg);
 		border: none;
 		outline: none;
@@ -14,7 +16,7 @@
 
 		&:hover {
 			cursor: pointer;
-			background-color: #274aa3;
+			background-color: $darken-primary;
 		}
 
 		&-wrapper {
@@ -74,8 +76,8 @@
 		&-header {
 			text-align: center;
 			margin: 21px 0 60px 0;
-			font-family: 'Inter', sans-serif;
-			color: #1e1e1e;
+
+			color: $dark;
 			font-size: 16px;
 			font-weight: 600;
 			line-height: 100%;
@@ -88,8 +90,7 @@
 		}
 
 		&-link {
-			font-family: 'Inter', sans-serif;
-			color: #3369f3;
+			color: $primary;
 			font-size: 13px;
 			font-weight: 500;
 			line-height: 100%;
@@ -100,7 +101,7 @@
 
 			&:hover {
 				cursor: pointer;
-				color: #274aa3;
+				color: $darken-primary;
 			}
 
 			&:last-child {
@@ -121,12 +122,12 @@
 		&-save-button {
 			align-self: center;
 			text-align: center;
-			font-family: 'Inter', sans-serif;
+
 			color: #fff;
 			line-height: 100%;
 			font-weight: 500;
 			font-size: 13px;
-			background-color: #3369f3;
+			background-color: $primary;
 			padding: 12px 0;
 			border-radius: 8px;
 			border: none;
@@ -135,7 +136,7 @@
 
 			&:hover {
 				cursor: pointer;
-				background-color: #274aa3;
+				background-color: $darken-primary;
 			}
 		}
 	}

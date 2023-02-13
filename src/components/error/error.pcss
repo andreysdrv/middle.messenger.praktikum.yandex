@@ -1,3 +1,5 @@
+@import '../../styles/variables.pcss';
+
 .error {
 	display: flex;
 	align-items: center;
@@ -6,8 +8,8 @@
 	min-height: 100vh;
 
 	&__code {
-		color: #1e1e1e;
-		font-family: 'Inter', sans-serif;
+		color: $dark;
+
 		line-height: 100%;
 		font-weight: 500;
 		margin: 0;
@@ -15,8 +17,8 @@
 	}
 
 	&__title {
-		color: #1e1e1e;
-		font-family: 'Inter', sans-serif;
+		color: $dark;
+
 		line-height: 100%;
 		font-weight: 500;
 		font-size: 20px;
@@ -24,8 +26,8 @@
 	}
 
 	&__link {
-		color: #3369f3;
-		font-family: 'Inter', sans-serif;
+		color: $primary;
+
 		line-height: 100%;
 		font-weight: 500;
 		font-size: 11px;
@@ -33,7 +35,7 @@
 
 		&:hover {
 			cursor: pointer;
-			color: #274aa3;
+			color: $darken-primary;
 		}
 	}
 }

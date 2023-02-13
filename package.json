@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "parcel src/index.hbs",
 		"build": "parcel build src/index.hbs",
-		"start": "node src/server.js"
+		"start": "npm run build && node src/server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -18,15 +18,16 @@
 	},
 	"homepage": "https://github.com/andreysdrv/middle.messenger.praktikum.yandex#readme",
 	"devDependencies": {
-		"@anikin/parcel-transformer-handlebars": "^1.0.9",
-		"autoprefixer": "^10.4.13",
-		"parcel": "^2.8.3",
-		"postcss": "^8.4.21",
-		"postcss-nested": "^6.0.0",
-		"postcss-plugin": "^1.0.0"
+		"@anikin/parcel-transformer-handlebars": "1.0.9",
+		"autoprefixer": "10.4.13",
+		"parcel": "2.8.3",
+		"postcss": "8.4.21",
+		"postcss-import": "14.0.0",
+		"postcss-nested": "6.0.0",
+		"postcss-simple-vars": "7.0.1"
 	},
 	"dependencies": {
-		"express": "^4.18.2",
-		"handlebars": "^4.7.7"
+		"express": "4.18.2",
+		"handlebars": "4.7.7"
 	}
 }

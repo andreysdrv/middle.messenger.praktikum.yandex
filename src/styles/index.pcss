@@ -1,10 +1,15 @@
 @import './normalize.pcss';
+@import './variables.pcss';
 @import './chat.pcss';
 @import './profile.pcss';
 @import '../components/error/error.pcss';
 @import '../components/form-input/form-input.pcss';
 @import '../components/chat-item/chat-item.pcss';
 @import '../components/chat-message/chat-message.pcss';
+
+body {
+	font-family: 'Inter', sans-serif;
+}
 
 .wrapper {
 	display: flex;
@@ -27,8 +32,8 @@
 		text-align: center;
 		margin-top: 0;
 		margin-bottom: 40px;
-		font-family: 'Inter', sans-serif;
-		color: #1e1e1e;
+
+		color: $dark;
 		font-size: 20px;
 		font-weight: 500;
 		line-height: 100%;
@@ -41,12 +46,12 @@
 
 		&-button {
 			text-align: center;
-			font-family: 'Inter', sans-serif;
+
 			color: #fff;
 			line-height: 100%;
 			font-weight: 500;
 			font-size: 13px;
-			background-color: #3369f3;
+			background-color: $primary;
 			padding: 12px 0;
 			border-radius: 8px;
 			border: none;
@@ -55,15 +60,15 @@
 
 			&:hover {
 				cursor: pointer;
-				background-color: #274aa3;
+				background-color: $darken-primary;
 			}
 		}
 
 		&-link {
 			align-self: center;
 			text-align: center;
-			font-family: 'Inter', sans-serif;
-			color: #3369f3;
+
+			color: $primary;
 			line-height: 100%;
 			font-weight: 500;
 			font-size: 11px;
@@ -72,7 +77,7 @@
 
 			&:hover {
 				cursor: pointer;
-				color: #5780e9;
+				color: $darken-primary;
 			}
 		}
 	}

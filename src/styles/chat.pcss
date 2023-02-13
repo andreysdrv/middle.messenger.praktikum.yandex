@@ -1,3 +1,5 @@
+@import './variables.pcss';
+
 .chat {
 	&__layout {
 		height: 100vh;
@@ -18,8 +20,8 @@
 
 			&-link {
 				align-self: flex-end;
-				font-family: 'Inter', sans-serif;
-				color: #999;
+
+				color: $primary-gray;
 				line-height: 100%;
 				font-weight: 500;
 				font-size: 12px;
@@ -33,29 +35,28 @@
 			}
 
 			&-input {
-				font-family: 'Inter', sans-serif;
 				line-height: 100%;
 				font-weight: 600;
 				font-size: 12px;
-				background-color: #efefef;
+				background-color: $gray;
 				border: none;
 				padding: 10px;
 				border-radius: 5px;
 				text-align: center;
 				outline: none;
-				color: #1e1e1e;
+				color: $dark;
 				text-align: start;
 				transition: 0.175s;
 
 				&::-webkit-input-placeholder {
 					text-align: center;
-					color: #999;
+					color: $primary-gray;
 					font-weight: 500;
 				}
 
 				&:-moz-placeholder {
 					text-align: center;
-					color: #999;
+					color: $primary-gray;
 					font-weight: 500;
 				}
 			}
@@ -115,8 +116,7 @@
 			}
 
 			&-name {
-				font-family: 'Inter', sans-serif;
-				color: #1e1e1e;
+				color: $dark;
 				line-height: 100%;
 				font-weight: 600;
 				font-size: 13px;
@@ -165,23 +165,23 @@
 			padding: 10px 20px;
 			border: none;
 			border-radius: 30px;
-			background-color: #efefef;
-			font-family: 'Inter', sans-serif;
-			color: #1e1e1e;
+			background-color: $gray;
+
+			color: $dark;
 			line-height: 100%;
 			font-weight: 500;
 			font-size: 12px;
 			outline: none;
 
 			&::placeholder {
-				color: #999;
+				color: $primary-gray;
 			}
 		}
 
 		&-send {
 			border: none;
 			border-radius: 50%;
-			background-color: #3369f3;
+			background-color: $primary;
 			background-image: url('../assets/arrow.svg');
 			background-repeat: no-repeat;
 			background-position: center;
@@ -191,7 +191,7 @@
 
 			&:hover {
 				cursor: pointer;
-				background-color: #274aa3;
+				background-color: $darken-primary;
 			}
 		}
 	}
