@@ -20,7 +20,6 @@ export class SigninPage extends Block {
           id: 'login',
           name: 'login',
           placeholder: 'Логин',
-          errorText: 'Неверный логин',
         }),
         new FormInput({
           type: 'password',
@@ -29,9 +28,6 @@ export class SigninPage extends Block {
           placeholder: 'Пароль',
         }),
       ],
-      // events: {
-      //   submit,
-      // },
     });
   }
 

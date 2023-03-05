@@ -111,7 +111,7 @@ class Block<P extends Record<string, any> = any> {
     return true;
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: Partial<P>) => {
     if (!nextProps) {
       return;
     }
@@ -126,7 +126,7 @@ class Block<P extends Record<string, any> = any> {
   private _render() {
     const block = this.render();
 
-    // this._element!.innerHTML = '';
+    this._element!.innerHTML = '';
     this._element!.append(block);
 
     this._addEvents();

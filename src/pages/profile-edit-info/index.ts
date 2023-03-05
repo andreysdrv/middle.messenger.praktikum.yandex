@@ -39,8 +39,8 @@ export class ProfileEditInfoPage extends Block {
         }),
         new FormInput({
           type: 'text',
-          id: 'second_name',
-          name: 'second_name',
+          id: 'display_name',
+          name: 'display_name',
           placeholder: 'Имя в чате',
         }),
         new FormInput({

@@ -56,12 +56,8 @@ export class SignupPage extends Block {
           id: 'password_repeat',
           name: 'password',
           placeholder: 'Повторите пароль',
-          errorText: 'Пароли не совпадают',
         }),
       ],
-      // events: {
-      //   submit,
-      // },
     });
   }
 
