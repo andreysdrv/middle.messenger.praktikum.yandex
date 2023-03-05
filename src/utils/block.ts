@@ -40,7 +40,10 @@ class Block<P extends Record<string, any> = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: P): { props: P, children: Record<string, Block | Block[]> } {
+  _getChildrenAndProps(childrenAndProps: P): {
+    props: P,
+    children: Record<string, Block | Block[]>
+  } {
     const props: Record<string, unknown> = {};
     const children: Record<string, Block | Block[]> = {};
 
@@ -62,6 +65,14 @@ class Block<P extends Record<string, any> = any> {
 
     Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _removeEvents() {
+    const { events = {} } = this.props as P & { events: Record<string, () => void> };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -126,7 +137,9 @@ class Block<P extends Record<string, any> = any> {
   private _render() {
     const block = this.render();
 
+    this._removeEvents();
     this._element!.innerHTML = '';
+
     this._element!.append(block);
 
     this._addEvents();
