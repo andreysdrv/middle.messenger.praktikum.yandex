@@ -32,7 +32,8 @@
 		"postcss-nested": "6.0.0",
 		"postcss-simple-vars": "7.0.1",
 		"stylelint": "15.1.0",
-		"stylelint-config-recommended": "10.0.1"
+		"stylelint-config-recommended": "10.0.1",
+		"typescript": "4.9.5"
 	},
 	"dependencies": {
 		"express": "4.18.2",

@@ -1,7 +1,5 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 
-import { TestPage } from './pages/test-page';
-
 import Navigation from './components/navigation/navigation.hbs';
 import FormInput from './components/form-input/form-input.hbs';
 import ChatItem from './components/chat-item/chat-item.hbs';
@@ -45,8 +43,7 @@ const ROUTES: Record<'SIGNIN' |
     'PROFILE_EDIT' |
     'PASSWORD_EDIT' |
     'NOT_FOUND' |
-    'SERVER_ERROR' |
-    'TEST_PAGE', Block> = {
+    'SERVER_ERROR', Block> = {
       SIGNIN: new SigninPage(),
       SIGNUP: new SignupPage(),
       CHAT: new ChatPage({ avatar }),
@@ -55,7 +52,6 @@ const ROUTES: Record<'SIGNIN' |
       PASSWORD_EDIT: new ProfileEditPasswordPage(),
       NOT_FOUND: new NotFoundPage(),
       SERVER_ERROR: new ServerErrorPage(),
-      TEST_PAGE: new TestPage(),
     };
 
 declare global {
