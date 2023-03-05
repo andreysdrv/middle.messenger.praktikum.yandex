@@ -8,6 +8,7 @@ interface FormProps {
     submitText: string
     redirectText: string
     fields: FormInput[] | FormInput
+    events: Record<string, (e: Event) => void>
 }
 
 export class Form extends Block {

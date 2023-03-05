@@ -18,6 +18,7 @@ import { ProfileEditInfoPage } from './pages/profile-edit-info';
 import { ProfileEditPasswordPage } from './pages/profile-edit-password';
 import { NotFoundPage } from './pages/not-found';
 import { ServerErrorPage } from './pages/server-error';
+import { submit } from './utils/helpers';
 
 Handlebars.registerPartial({
   Navigation,
@@ -49,10 +50,23 @@ const ROUTES: Record<'SIGNIN' |
     'TEST_PAGE', Block> = {
       SIGNIN: new SigninPage(),
       SIGNUP: new SignupPage(),
-      CHAT: new ChatPage({ avatar }),
+      CHAT: new ChatPage({
+        avatar,
+        events: {
+          submit,
+        },
+      }),
       PROFILE: new ProfilePage({ avatar }),
-      PROFILE_EDIT: new ProfileEditInfoPage(),
-      PASSWORD_EDIT: new ProfileEditPasswordPage(),
+      PROFILE_EDIT: new ProfileEditInfoPage({
+        events: {
+          submit,
+        },
+      }),
+      PASSWORD_EDIT: new ProfileEditPasswordPage({
+        events: {
+          submit,
+        },
+      }),
       NOT_FOUND: new NotFoundPage(),
       SERVER_ERROR: new ServerErrorPage(),
       TEST_PAGE: new TestPage(),

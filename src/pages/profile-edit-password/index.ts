@@ -2,9 +2,13 @@ import Block from '../../utils/block';
 import template from './profile-edit-password.hbs';
 import { FormInput } from '../../components/form-input';
 
+interface ProfileEditPasswordPageProps {
+  events: Record<string, (e: Event) => void>
+}
+
 export class ProfileEditPasswordPage extends Block {
-  constructor() {
-    super('main');
+  constructor(props: ProfileEditPasswordPageProps) {
+    super('main', props);
   }
 
   protected init() {

@@ -6,6 +6,7 @@ import avatar from '../../assets/user.png';
 
 interface ChatPageProps {
   avatar: string
+  events: Record<string, (e: Event) => void>
 }
 
 export class ChatPage extends Block {

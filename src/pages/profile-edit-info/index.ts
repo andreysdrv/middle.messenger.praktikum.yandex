@@ -2,9 +2,13 @@ import Block from '../../utils/block';
 import template from './profile-edit-info.hbs';
 import { FormInput } from '../../components/form-input';
 
+interface ProfileEditInfoPageProps {
+  events: Record<string, (e: Event) => void>
+}
+
 export class ProfileEditInfoPage extends Block {
-  constructor() {
-    super('main');
+  constructor(props: ProfileEditInfoPageProps) {
+    super('main', props);
   }
 
   protected init() {
