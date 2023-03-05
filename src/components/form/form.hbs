@@ -1,0 +1,10 @@
+<h2 class='form__header'>{{ title }}</h2>
+<div class="form__body">
+    {{# each fields }}
+        {{{ this }}}
+    {{/ each }}
+</div>
+<div class='form__footer'>
+    <button type='submit' class='form__footer-button'>{{ submitText }}</button>
+    <span class='form__footer-link'>{{ redirectText }}</span>
+</div>

@@ -1,20 +1,18 @@
-<li class='chat__list-item-wrapper'>
-	<div class='chat__list-item'>
-		<img src='../assets/user.png' alt='{{from}}' class='chat__list-user-img' />
-		<div class='chat__list-content'>
-			<p class='chat__list-from'>{{from}}</p>
-			<p class='chat__list-preview'>
-				{{#unless isIncoming}}
-					<span class='chat__list-preview-isIncoming'>Вы: </span>
-				{{/unless}}
-				{{message}}
-			</p>
-		</div>
-		<div class='chat__list-info'>
-			<div class='chat__list-timestamp'>{{timestamp}}</div>
-			{{#if isIncoming}}
-				<div class='chat__list-count'>{{count}}</div>
-			{{/if}}
-		</div>
-	</div>
-</li>
+<div class='chat__list-item'>
+    <img src='{{ avatar }}' alt='{{from}}' class='chat__list-user-img'/>
+    <div class='chat__list-content'>
+        <p class='chat__list-from'>{{from}}</p>
+        <p class='chat__list-preview'>
+            {{#unless isIncoming}}
+                <span class='chat__list-preview-isIncoming'>Вы: </span>
+            {{/unless}}
+            {{message}}
+        </p>
+    </div>
+    <div class='chat__list-info'>
+        <div class='chat__list-timestamp'>{{timestamp}}</div>
+        {{#if isIncoming}}
+            <div class='chat__list-count'>{{count}}</div>
+        {{/if}}
+    </div>
+</div>

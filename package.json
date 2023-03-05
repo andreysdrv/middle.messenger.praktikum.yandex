@@ -3,9 +3,12 @@
 	"version": "1.0.0",
 	"description": "Web messenger yandex - practicum project.",
 	"scripts": {
-		"dev": "parcel src/index.hbs",
-		"build": "parcel build src/index.hbs",
-		"start": "npm run build && node src/server.js"
+		"dev": "parcel src/index.html --no-cache",
+		"build": "parcel build src/index.html",
+		"start": "npm run build && node src/server.js",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix .",
+		"stylelint": "stylelint \"**/*.pcss\""
 	},
 	"repository": {
 		"type": "git",
@@ -18,16 +21,22 @@
 	},
 	"homepage": "https://github.com/andreysdrv/middle.messenger.praktikum.yandex#readme",
 	"devDependencies": {
-		"@anikin/parcel-transformer-handlebars": "1.0.9",
-		"autoprefixer": "10.4.13",
+		"@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
+		"@typescript-eslint/eslint-plugin": "5.52.0",
+		"@typescript-eslint/parser": "5.52.0",
+		"eslint": "8.34.0",
+		"eslint-config-airbnb": "19.0.4",
 		"parcel": "2.8.3",
 		"postcss": "8.4.21",
 		"postcss-import": "14.0.0",
 		"postcss-nested": "6.0.0",
-		"postcss-simple-vars": "7.0.1"
+		"postcss-simple-vars": "7.0.1",
+		"stylelint": "15.1.0",
+		"stylelint-config-recommended": "10.0.1"
 	},
 	"dependencies": {
 		"express": "4.18.2",
-		"handlebars": "4.7.7"
+		"handlebars": "4.7.7",
+		"nanoid": "4.0.1"
 	}
 }

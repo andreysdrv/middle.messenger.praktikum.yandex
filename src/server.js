@@ -1,10 +1,9 @@
-const express = require('express')
-const { PORT = 3000 } = process.env
+const express = require('express');
 
-const app = express()
+const { PORT = 3000 } = process.env;
 
-app.use(express.static('dist'))
+const app = express();
 
-app.listen(PORT, () => {
-	console.log(`Сервер запущен на порту: ${PORT}!`)
-})
+app.use(express.static('dist'));
+
+app.listen(PORT);
