@@ -4,22 +4,13 @@
         <button class='profile__back-button' onclick="goTo('CHAT')"></button>
     </aside>
     <div class='profile__info'>
-        <form name='settings' class='profile__form'>
-            <div class="profile__form-avatar">
-                <button type='button' class='profile__form-avatar-button'></button>
-                <img src="{{ avatar }}" alt="Андрей" class='profile__form-avatar-img'>
-            </div>
-            <h2 class="profile__form-header">Андрей</h2>
-            <div class="profile__form-body">
-                {{# each fields }}
-                    {{{ this }}}
-                {{/ each }}
-            </div>
+        <div>
+            {{{ form }}}
             <div class="profile__form-footer">
-                <span onclick="goTo('PROFILE_EDIT')" class="profile__form-link">Изменить данные</span>
-                <span onclick="goTo('PASSWORD_EDIT')"  class="profile__form-link">Изменить пароль</span>
-                <span onclick="goTo('SIGNIN')"  class="profile__form-link profile__form-link_color_red">Выйти</span>
+                <a href="#" onclick="goTo('PROFILE_EDIT')" class="profile__form-link">Изменить данные</a>
+                <a href="#" onclick="goTo('PASSWORD_EDIT')"  class="profile__form-link">Изменить пароль</a>
+                <a href="#" onclick="goTo('SIGNIN')"  class="profile__form-link profile__form-link_color_red">Выйти</a>
             </div>
-        </form>
+        </div>
     </div>
 </div>

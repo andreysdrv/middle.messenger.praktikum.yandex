@@ -1,10 +1,14 @@
 <input
-    type={{type}}
     id={{id}}
     name={{name}}
+    type={{type}}
+    value='{{value}}'
     class='form__input'
     placeholder='{{placeholder}}'
-/>
+    {{#if disabled}}
+        disabled
+    {{/if}}
+>
 {{#if errorText}}
     <span class='form__input-error {{name}}-input-error'>{{errorText}}</span>
 {{/if}}

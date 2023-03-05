@@ -6,12 +6,27 @@ import avatar from '../../assets/user.png';
 
 interface ChatPageProps {
   avatar: string
-  events: Record<string, (e: Event) => void>
 }
 
 export class ChatPage extends Block {
   constructor(props: ChatPageProps) {
-    super('main', { ...props, avatar: props.avatar });
+    super('main', {
+      ...props,
+      avatar: props.avatar,
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
+          const form = event.target as HTMLFormElement;
+          const values = {};
+          form.querySelectorAll('input')
+            .forEach((field) => {
+              values[field.name] = field.value;
+            });
+
+          console.log(values);
+        },
+      },
+    });
   }
 
   init() {

@@ -7,6 +7,8 @@ interface FormInputProps {
     name: string
     placeholder: string
     errorText?: string
+    disabled?: boolean
+    value?: string
 }
 
 export class FormInput extends Block {

@@ -4,21 +4,36 @@ import { FormInput } from '../form-input';
 
 interface FormProps {
     name: string
-    title: string
-    submitText: string
-    redirectText: string
+    title?: string
+    submitText?: string
+    redirectText?: string
     fields: FormInput[] | FormInput
-    events: Record<string, (e: Event) => void>
 }
 
 export class Form extends Block {
   constructor(props: FormProps) {
-    super('form', props);
+    super('form', {
+      ...props,
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
+          const form = event.target as HTMLFormElement;
+          const values = {};
+          form.querySelectorAll('input')
+            .forEach((field) => {
+              values[field.name] = field.value;
+            });
+
+          console.log(values);
+        },
+      },
+    });
   }
 
   protected init() {
     this.element!.classList.add('form');
-    this.element!.setAttribute('name', this.props.name);
+    // @ts-ignore
+      this.element!.setAttribute('name', this.props.name);
   }
 
   render() {

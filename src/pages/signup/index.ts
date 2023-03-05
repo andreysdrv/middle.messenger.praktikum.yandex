@@ -2,7 +2,6 @@ import Block from '../../utils/block';
 import template from './signup.hbs';
 import { Form } from '../../components/form';
 import { FormInput } from '../../components/form-input';
-import { submit } from '../../utils/helpers';
 
 export class SignupPage extends Block {
   constructor() {
@@ -60,9 +59,9 @@ export class SignupPage extends Block {
           errorText: 'Пароли не совпадают',
         }),
       ],
-      events: {
-        submit,
-      },
+      // events: {
+      //   submit,
+      // },
     });
   }
 

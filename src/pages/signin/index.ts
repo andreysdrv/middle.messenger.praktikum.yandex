@@ -2,7 +2,6 @@ import Block from '../../utils/block';
 import template from './signin.hbs';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
-import { submit } from '../../utils/helpers';
 
 export class SigninPage extends Block {
   constructor() {
@@ -30,9 +29,9 @@ export class SigninPage extends Block {
           placeholder: 'Пароль',
         }),
       ],
-      events: {
-        submit,
-      },
+      // events: {
+      //   submit,
+      // },
     });
   }
 

@@ -1,37 +1,38 @@
 import Block from '../../utils/block';
 import template from './profile-edit-password.hbs';
 import { FormInput } from '../../components/form-input';
-
-interface ProfileEditPasswordPageProps {
-  events: Record<string, (e: Event) => void>
-}
+import { Form } from '../../components/form';
 
 export class ProfileEditPasswordPage extends Block {
-  constructor(props: ProfileEditPasswordPageProps) {
-    super('main', props);
+  constructor() {
+    super('main');
   }
 
   protected init() {
-    this.children.fields = [
-      new FormInput({
-        type: 'password',
-        id: 'oldPassword',
-        name: 'oldPassword',
-        placeholder: 'Старый пароль',
-      }),
-      new FormInput({
-        type: 'password',
-        id: 'newPassword',
-        name: 'newPassword',
-        placeholder: 'Новый пароль',
-      }),
-      new FormInput({
-        type: 'password',
-        id: 'newPassword',
-        name: 'newPassword',
-        placeholder: 'Повторите новый пароль',
-      }),
-    ];
+    this.children.form = new Form({
+      name: 'password',
+      submitText: 'Сохранить',
+      fields: [
+        new FormInput({
+          type: 'password',
+          id: 'oldPassword',
+          name: 'oldPassword',
+          placeholder: 'Старый пароль',
+        }),
+        new FormInput({
+          type: 'password',
+          id: 'newPassword',
+          name: 'newPassword',
+          placeholder: 'Новый пароль',
+        }),
+        new FormInput({
+          type: 'password',
+          id: 'newPassword',
+          name: 'newPassword',
+          placeholder: 'Повторите новый пароль',
+        }),
+      ],
+    });
   }
 
   render() {

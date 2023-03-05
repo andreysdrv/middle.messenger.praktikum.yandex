@@ -1,10 +1,16 @@
-<h2 class='form__header'>{{ title }}</h2>
+{{#if title}}
+    <h2 class='form__header'>{{ title }}</h2>
+{{/if}}
 <div class="form__body">
     {{# each fields }}
         {{{ this }}}
     {{/ each }}
 </div>
-<div class='form__footer'>
-    <button type='submit' class='form__footer-button'>{{ submitText }}</button>
-    <span class='form__footer-link'>{{ redirectText }}</span>
-</div>
+{{#if submitText }}
+    <div class='form__footer'>
+        <button type='submit' class='form__footer-button'>{{ submitText }}</button>
+        {{#if redirectText}}
+            <span class='form__footer-link'>{{ redirectText }}</span>
+        {{/if}}
+    </div>
+{{/if}}
