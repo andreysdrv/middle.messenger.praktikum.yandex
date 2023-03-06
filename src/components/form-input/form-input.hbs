@@ -1,12 +1,12 @@
-<div class='form__input-wrapper'>
-	<input
-		type={{type}}
-		id={{id}}
-		name={{name}}
-		class='form__input'
-		placeholder='{{placeholder}}'
-	/>
-	{{#if errorText}}
-		<span class='form__input-error {{name}}-input-error'>{{errorText}}</span>
-	{{/if}}
-</div>
+<input
+    id={{id}}
+    name={{name}}
+    type={{type}}
+    value='{{value}}'
+    class='form__input'
+    placeholder='{{placeholder}}'
+    {{#if disabled}}
+        disabled
+    {{/if}}
+>
+{{{ error }}}

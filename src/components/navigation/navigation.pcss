@@ -1,0 +1,32 @@
+@import '../../styles/variables.pcss';
+
+.nav {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    &__list {
+        margin: 0;
+        padding: 4px 24px;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        background-color: $primary;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        &-item {
+            &:not(:last-child) {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    &__link {
+        color: $dark;
+        transition: 0.175s;
+        &:hover {
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}

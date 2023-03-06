@@ -1,0 +1,16 @@
+{{> Navigation }}
+<div class='profile'>
+    <aside class='profile__back-button-wrapper'>
+        <button class='profile__back-button' onclick="goTo('CHAT')"></button>
+    </aside>
+    <div class='profile__info'>
+        <div>
+            {{{ form }}}
+            <div class="profile__form-footer">
+                <a href="#" onclick="goTo('PROFILE_EDIT')" class="profile__form-link">Изменить данные</a>
+                <a href="#" onclick="goTo('PASSWORD_EDIT')"  class="profile__form-link">Изменить пароль</a>
+                <a href="#" onclick="goTo('SIGNIN')"  class="profile__form-link profile__form-link_color_red">Выйти</a>
+            </div>
+        </div>
+    </div>
+</div>
