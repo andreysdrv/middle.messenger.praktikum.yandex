@@ -1,11 +1,14 @@
 @import './normalize.pcss';
 @import './variables.pcss';
-@import './chat.pcss';
-@import './profile.pcss';
+@import '../pages/chat/chat.pcss';
+@import '../pages/profile/profile.pcss';
 @import '../components/error/error.pcss';
+@import '../components/form/form.pcss';
 @import '../components/form-input/form-input.pcss';
+@import '../components/input-error/input-error.pcss';
 @import '../components/chat-item/chat-item.pcss';
 @import '../components/chat-message/chat-message.pcss';
+@import '../components/navigation/navigation.pcss';
 
 body {
 	font-family: 'Inter', sans-serif;
@@ -16,69 +19,4 @@ body {
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
-}
-
-.form {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	width: 340px;
-	padding: 50px 30px 30px;
-	border-radius: 12px;
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
-	margin: 0;
-
-	&__header {
-		text-align: center;
-		margin-top: 0;
-		margin-bottom: 40px;
-
-		color: $dark;
-		font-size: 20px;
-		font-weight: 500;
-		line-height: 100%;
-	}
-
-	&__footer {
-		display: flex;
-		flex-direction: column;
-		margin-top: auto;
-
-		&-button {
-			text-align: center;
-
-			color: #fff;
-			line-height: 100%;
-			font-weight: 500;
-			font-size: 13px;
-			background-color: $primary;
-			padding: 12px 0;
-			border-radius: 8px;
-			border: none;
-			transition: 0.175s;
-			margin-top: 32px;
-
-			&:hover {
-				cursor: pointer;
-				background-color: $darken-primary;
-			}
-		}
-
-		&-link {
-			align-self: center;
-			text-align: center;
-
-			color: $primary;
-			line-height: 100%;
-			font-weight: 500;
-			font-size: 11px;
-			margin-top: 14px;
-			text-decoration: none;
-
-			&:hover {
-				cursor: pointer;
-				color: $darken-primary;
-			}
-		}
-	}
 }

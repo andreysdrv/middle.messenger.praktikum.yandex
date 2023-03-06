@@ -1,0 +1,63 @@
+@import '../../styles/variables.pcss';
+
+.form {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 340px;
+    padding: 50px 30px 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    margin: 0;
+
+    &__header {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 40px;
+        color: $dark;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 100%;
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+
+        &-button {
+            text-align: center;
+            color: #fff;
+            line-height: 100%;
+            font-weight: 500;
+            font-size: 13px;
+            background-color: $primary;
+            padding: 12px 0;
+            border-radius: 8px;
+            border: none;
+            transition: 0.175s;
+            margin-top: 32px;
+
+            &:hover {
+                cursor: pointer;
+                background-color: $darken-primary;
+            }
+        }
+
+        &-link {
+            align-self: center;
+            text-align: center;
+            color: $primary;
+            line-height: 100%;
+            font-weight: 500;
+            font-size: 11px;
+            margin-top: 14px;
+            text-decoration: none;
+
+            &:hover {
+                cursor: pointer;
+                color: $darken-primary;
+            }
+        }
+    }
+}

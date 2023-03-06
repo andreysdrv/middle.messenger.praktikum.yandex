@@ -1,0 +1,39 @@
+{{> Navigation }}
+<div class='chat__layout'>
+    <sidebar class='chat__list'>
+        <div class='chat__list-header'>
+            <span class='chat__list-header-link' onclick="goTo('PROFILE')">Профиль</span>
+            <input
+                    type='search'
+                    placeholder='Поиск'
+                    class='chat__list-header-input'
+            />
+        </div>
+        <ul class="chat__list-body">
+            {{#each chatItems}}
+                {{{ this }}}
+            {{/each}}
+        </ul>
+    </sidebar>
+    <div class='chat__feed'>
+        <div class='chat__feed-header'>
+            <div class='chat__feed-user'>
+                <img src='{{ avatar }}' alt='Андрей' class='chat__feed-user-img'/>
+                <p class="chat__feed-user-name">Андрей</p>
+            </div>
+            <button class='chat__feed-actions'></button>
+        </div>
+        <ul class='chat__feed-body'>
+            {{#each chatMessages}}
+                {{{ this }}}
+            {{/each}}
+        </ul>
+        <div class='chat__feed-footer'>
+            <form class='chat__feed-form' name='message'>
+                <button class='chat__feed-attach'></button>
+                <input type='text' name='message' id='message' placeholder='Сообщение' class='chat__feed-input'/>
+                <button type='submit' class='chat__feed-send'></button>
+            </form>
+        </div>
+    </div>
+</div>
