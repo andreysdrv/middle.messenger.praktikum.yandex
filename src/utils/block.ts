@@ -1,35 +1,29 @@
 import { nanoid } from 'nanoid';
 import EventBus from './event-bus';
 
+// Нельзя создавать экземпляр данного класса
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
   public id = nanoid(6);
 
-  protected props: Record<string, unknown>;
+  protected props: P;
+
+  public children: Record<string, Block | Block[]>;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  private readonly _meta: { tagName: string, props: any };
-
-  protected children: Record<string, Block | Block[]>;
-
-  constructor(tagName = 'div', propsWithChildren = {}) {
+  constructor(propsWithChildren: P) {
     const eventBus = new EventBus();
 
-    const { children, props } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      tagName,
-      props,
-    };
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -37,6 +31,7 @@ class Block<P extends Record<string, any> = any> {
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
+
     eventBus.emit(Block.EVENTS.INIT);
   }
 
@@ -60,7 +55,7 @@ class Block<P extends Record<string, any> = any> {
     return { props: props as P, children };
   }
 
-  private _addEvents() {
+  _addEvents() {
     const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
@@ -68,57 +63,49 @@ class Block<P extends Record<string, any> = any> {
     });
   }
 
-  private _removeEvents() {
-    const { events = {} } = this.props as P & { events: Record<string, () => void> };
-
-    Object.keys(events).forEach((eventName) => {
-      this._element?.removeEventListener(eventName, events[eventName]);
-    });
-  }
-
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
-  }
-
   private _init() {
-    this._createResources();
-
     this.init();
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   protected init() {
-
   }
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount(oldProps) {}
+  componentDidMount() {
+  }
 
-  dispatchComponentDidMount() {
+  public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+
+    Object.values(this.children).forEach((child) => {
+      if (Array.isArray(child)) {
+        child.forEach((ch) => ch.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
-  _componentDidUpdate(oldProps, newProps) {
-    const response = this.componentDidUpdate(oldProps, newProps);
-    if (!response) {
-      return;
+  private _componentDidUpdate(oldProps: P, newProps: P) {
+    if (this.componentDidUpdate(oldProps, newProps)) {
+      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
-    this._render();
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  // @ts-expect-error
+  protected componentDidUpdate(oldProps: P, newProps: P) {
     return true;
   }
 
@@ -135,12 +122,15 @@ class Block<P extends Record<string, any> = any> {
   }
 
   private _render() {
-    const block = this.render();
+    const fragment = this.render();
 
-    this._removeEvents();
-    this._element!.innerHTML = '';
+    const newElement = fragment.firstElementChild as HTMLElement;
 
-    this._element!.append(block);
+    if (this._element && newElement) {
+      this._element.replaceWith(newElement);
+    }
+
+    this._element = newElement;
 
     this._addEvents();
   }
@@ -174,7 +164,7 @@ class Block<P extends Record<string, any> = any> {
       stub.replaceWith(component.getContent()!);
     };
 
-    Object.entries(this.children).forEach(([name, component]) => {
+    Object.entries(this.children).forEach(([_, component]) => {
       if (Array.isArray(component)) {
         component.forEach(replaceStub);
       } else {
@@ -193,19 +183,20 @@ class Block<P extends Record<string, any> = any> {
     return this.element;
   }
 
-  _makePropsProxy(props) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
+  _makePropsProxy(props: P) {
+    // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target, prop: string, value) {
         const oldTarget = { ...target };
-        target[prop] = value;
+
+        // eslint-disable-next-line no-param-reassign
+        target[prop as keyof P] = value;
 
         // Запускаем обновление компоненты
         // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
@@ -216,19 +207,6 @@ class Block<P extends Record<string, any> = any> {
         throw new Error('Нет доступа');
       },
     });
-  }
-
-  _createDocumentElement(tagName) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-    return document.createElement(tagName);
-  }
-
-  show() {
-    this.getContent().style.display = 'block';
-  }
-
-  hide() {
-    this.getContent().style.display = 'none';
   }
 }
 

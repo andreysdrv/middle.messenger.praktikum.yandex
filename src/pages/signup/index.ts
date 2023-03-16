@@ -2,10 +2,14 @@ import Block from '../../utils/block';
 import template from './signup.hbs';
 import { Form } from '../../components/form';
 import { FormInput } from '../../components/form-input';
+import { validator } from '../../utils/helpers';
+import { InputError } from '../../components/input-error';
+import AuthController from '../../controllers/auth-controller';
+import router from '../../utils/router';
 
 export class SignupPage extends Block {
   constructor() {
-    super('main');
+    super({});
   }
 
   protected init() {
@@ -14,6 +18,7 @@ export class SignupPage extends Block {
       title: 'Регистрация',
       submitText: 'Создать аккаунт',
       redirectText: 'Войти',
+      redirectPath: '/signin',
       fields: [
         new FormInput({
           type: 'email',
@@ -58,7 +63,31 @@ export class SignupPage extends Block {
           placeholder: 'Повторите пароль',
         }),
       ],
+      events: {
+        submit: (event: Event) => {
+          event.preventDefault();
+          this.handleSubmit();
+        },
+      },
     });
+  }
+
+  handleSubmit() {
+    const values: Record<string, string> = {};
+
+    (this.children.form.children.fields as FormInput[]).forEach((field) => {
+      const input = field.element!.querySelector('input') as HTMLInputElement;
+
+      if (validator(input).isValid) {
+        (field.children.error as InputError).setProps({ errorText: '' });
+      } else {
+        (field.children.error as InputError).setProps({ errorText: validator(input).error });
+      }
+
+      values[input.name] = input!.value;
+    });
+
+    AuthController.signup(values);
   }
 
   render() {

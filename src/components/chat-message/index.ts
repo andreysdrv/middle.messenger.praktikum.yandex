@@ -8,15 +8,7 @@ interface ChatMessageProps {
 
 export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
-    super('li', props);
-  }
-
-  init() {
-    this.element!.classList.add('chat__feed-message');
-
-    if (this.props.isOutgoing) {
-     this.element!.classList.add('chat__feed-message_outgoing');
-    }
+    super(props);
   }
 
   render() {

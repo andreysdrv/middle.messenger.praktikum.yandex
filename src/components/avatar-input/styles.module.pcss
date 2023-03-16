@@ -1,0 +1,36 @@
+.avatar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    &-button {
+        padding: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        border-radius: 50%;
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        background-color: transparent;
+        border: none;
+        transition: 0.175s;
+
+        &::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    &-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}

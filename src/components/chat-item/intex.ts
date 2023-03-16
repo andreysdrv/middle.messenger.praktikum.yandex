@@ -12,11 +12,7 @@ interface ChatItemProps {
 
 export class ChatItem extends Block {
   constructor(props: ChatItemProps) {
-    super('li', { ...props, avatar: props.avatar });
-  }
-
-  init() {
-    this.element!.classList.add('chat__list-item-wrapper');
+    super({ ...props, avatar: props.avatar });
   }
 
   render() {

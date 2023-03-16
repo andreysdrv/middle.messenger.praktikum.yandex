@@ -3,16 +3,12 @@ import template from './chat.hbs';
 import { ChatMessage } from '../../components/chat-message';
 import { ChatItem } from '../../components/chat-item/intex';
 import avatar from '../../assets/user.png';
-
-interface ChatPageProps {
-  avatar: string
-}
+import { Link } from '../../components/link';
+import { ProfileLink } from '../../components/profile-link';
 
 export class ChatPage extends Block {
-  constructor(props: ChatPageProps) {
-    super('main', {
-      ...props,
-      avatar: props.avatar,
+  constructor() {
+    super({
       events: {
         submit: (event: Event) => {
           event.preventDefault();
@@ -20,6 +16,7 @@ export class ChatPage extends Block {
           const values = {};
           form.querySelectorAll('input')
             .forEach((field) => {
+              // @ts-ignore
               values[field.name] = field.value;
             });
 
@@ -59,9 +56,14 @@ export class ChatPage extends Block {
         count: '1',
       }),
     ];
+
+    this.children.link = new ProfileLink({
+      label: 'Профиль',
+      to: '/profile',
+    });
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, avatar });
   }
 }
