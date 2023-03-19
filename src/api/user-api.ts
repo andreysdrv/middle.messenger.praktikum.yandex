@@ -26,4 +26,12 @@ export class UserApi extends BaseAPI {
   editPassword(data:UserPasswordData) {
     return this.http.put('/password', data);
   }
+
+  create = undefined;
+
+  read = undefined;
+
+  update = undefined;
+
+  delete = undefined;
 }

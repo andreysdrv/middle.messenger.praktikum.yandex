@@ -3,10 +3,14 @@ import template from './chat.hbs';
 import { ChatMessage } from '../../components/chat-message';
 import { ChatItem } from '../../components/chat-item/intex';
 import avatar from '../../assets/user.png';
-import { Link } from '../../components/link';
 import { ProfileLink } from '../../components/profile-link';
+import ChatsController from '../../controllers/chats-controller';
+import store, { withStore } from '../../utils/store';
+import { ChatData } from '../../api/chats-api';
+import { ChatAddButton } from '../../components/chat-add-button';
+import { ModalWithForm } from '../../components/modal-with-form';
 
-export class ChatPage extends Block {
+export class ChatPageBase extends Block {
   constructor() {
     super({
       events: {
@@ -24,46 +28,57 @@ export class ChatPage extends Block {
         },
       },
     });
+
+    ChatsController.fetchChats();
   }
 
   init() {
-    this.children.chatMessages = [
-      new ChatMessage({
-        message: 'Привет, Андрей!1',
-        isOutgoing: true,
-      }),
-      new ChatMessage({
-        message: 'Привет, Андрей!2',
-        isOutgoing: false,
-      }),
-    ];
-
-    this.children.chatItems = [
-      new ChatItem({
-        avatar,
-        isIncoming: true,
-        message: 'Привет!1',
-        timestamp: '10:02',
-        from: 'Андрей',
-        count: '1',
-      }),
-      new ChatItem({
-        avatar,
-        isIncoming: false,
-        message: 'Привет!2',
-        timestamp: '10:02',
-        from: 'Андрей',
-        count: '1',
-      }),
-    ];
-
     this.children.link = new ProfileLink({
       label: 'Профиль',
       to: '/profile',
     });
+
+    this.children.button = new ChatAddButton({
+      events: {
+        click: () => {
+          ChatsController.openCreateChatModal();
+        },
+      },
+    });
+
+    this.children.modal = new ModalWithForm({});
+  }
+
+  protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+    this.children.chatItems = newProps.chats.data.map((chat: ChatData) => new ChatItem({
+      ...chat,
+      events: {
+        click: () => {
+          ChatsController.selectChat(chat.id);
+        },
+      },
+    }));
+
+    this.children.chatMessages = [
+      new ChatMessage({
+        message: this.props.selectedChat
+          ? this.props.selectedChat
+          : 'Выберите чат из списка или создайте новый',
+        isOutgoing: true,
+      }),
+    ];
+
+    return true;
   }
 
   render() {
     return this.compile(template, { ...this.props, avatar });
   }
 }
+
+const withChats = withStore((state) => ({
+  chats: state.chats,
+  selectedChat: state.selectedChat,
+}));
+
+export const ChatPage = withChats(ChatPageBase);

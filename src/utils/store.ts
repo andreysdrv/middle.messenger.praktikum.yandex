@@ -2,13 +2,25 @@ import { UserData } from '../api/auth-api';
 import { set } from './helpers';
 import EventBus from './event-bus';
 import Block from './block';
+import { ChatsData } from '../api/chats-api';
 
 interface State {
-    user: {
-      data?: UserData
-      error?: string
-      isLoading?: boolean
+  user: {
+    data?: UserData
+    error?: string
+    isLoading?: boolean
+  },
+  chats: {
+    data?: ChatsData
+    error?: string
+    isLoading?: boolean
+  },
+  selectedChat?: number
+  modals: {
+    createChat: {
+      isOpen: boolean
     }
+  }
 }
 
 enum StoreEvent {
@@ -16,7 +28,15 @@ enum StoreEvent {
 }
 
 class Store extends EventBus {
-  private state: State = { user: {} };
+  private state: State = {
+    user: {},
+    chats: {},
+    modals: {
+      createChat: {
+        isOpen: false,
+      },
+    },
+  };
 
   getState(): State {
     return this.state;
@@ -51,6 +71,7 @@ export const withStore = (mapStateToProps: (state: State) => any) => (
         propsFromState = { ...newPropsFromState };
 
         this.setProps({ ...propsFromState });
+        console.log({ ...propsFromState });
       });
     }
   };

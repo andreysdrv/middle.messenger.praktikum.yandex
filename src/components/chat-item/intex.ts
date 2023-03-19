@@ -1,18 +1,16 @@
 import Block from '../../utils/block';
 import template from './chat-item.hbs';
+import { ChatData } from '../../api/chats-api';
 
-interface ChatItemProps {
-  avatar: string
-  from: string
-  message: string
-  timestamp: string
-  count: string
-  isIncoming: boolean
+interface ChatItemProps extends ChatData {
+  events: {
+    click: (event: Event) => void
+  }
 }
 
 export class ChatItem extends Block {
   constructor(props: ChatItemProps) {
-    super({ ...props, avatar: props.avatar });
+    super({ ...props });
   }
 
   render() {
