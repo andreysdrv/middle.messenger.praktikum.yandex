@@ -2,7 +2,6 @@ import Block from '../../utils/block';
 import template from './link.hbs';
 import { PropsWithRouter, withRouter } from '../../hocs/with-router';
 import styles from './styles.module.pcss';
-import router from '../../utils/router';
 
 interface BaseLinkProps extends PropsWithRouter {
     to: string;
@@ -25,7 +24,7 @@ export class BaseLink extends Block {
   }
 
   navigate() {
-    router.go(this.props.to);
+    this.props.router.go(this.props.to);
   }
 
   render() {
