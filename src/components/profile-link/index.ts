@@ -2,6 +2,7 @@ import Block from '../../utils/block';
 import template from './profile-link.hbs';
 import styles from './styles.module.pcss';
 import { withRouter } from '../../hocs/with-router';
+import router from '../../utils/router';
 
 interface ProfileBaseLinkProps {
     label: string
@@ -22,7 +23,7 @@ export class ProfileBaseLink extends Block {
   }
 
   navigate() {
-    this.props.router.go(this.props.to);
+    router.go(this.props.to);
   }
 
   render() {

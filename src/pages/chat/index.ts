@@ -1,6 +1,5 @@
 import Block from '../../utils/block';
 import template from './chat.hbs';
-import ChatActionsButtonTemplate from './chat-actions-button.hbs';
 import { ChatMessage } from '../../components/chat-message';
 import { ChatItem } from '../../components/chat-item/intex';
 import avatar from '../../assets/user.png';
@@ -85,11 +84,6 @@ export class ChatPageBase extends Block {
           isOutgoing: message.user_id === this.props.user,
         }));
     }
-    this.children.actions = new ChatActionsButton({
-      events: {
-        click: () => ChatsController.openChatActionsModal(),
-      },
-    });
 
     return true;
   }
@@ -108,19 +102,3 @@ const withChats = withStore((state) => ({
 }));
 
 export const ChatPage = withChats(ChatPageBase);
-
-interface ChatActionsButtonProps {
-  events: {
-    click: (e: Event) => void
-  }
-}
-
-class ChatActionsButton extends Block {
-  constructor(props: ChatActionsButtonProps) {
-    super({ ...props });
-  }
-
-  render() {
-    return this.compile(ChatActionsButtonTemplate, this.props);
-  }
-}

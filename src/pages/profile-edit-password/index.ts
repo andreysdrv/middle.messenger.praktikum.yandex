@@ -6,6 +6,8 @@ import { UserPasswordData } from '../../api/user-api';
 import { validator } from '../../utils/helpers';
 import { InputError } from '../../components/input-error';
 import UserController from '../../controllers/user-controller';
+import { ProfileBackButton } from '../../components/profile-back-button';
+import router from '../../utils/router';
 
 interface ProfilePasswordProps extends UserPasswordData {}
 
@@ -16,6 +18,11 @@ const passwordFields = [
 
 export class ProfileEditPasswordPage extends Block {
   protected init() {
+    this.children.back = new ProfileBackButton({
+      events: {
+        click: () => router.go('/profile'),
+      },
+    });
     this.children.form = this.createForm();
   }
 

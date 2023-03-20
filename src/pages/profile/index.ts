@@ -9,6 +9,7 @@ import router from '../../utils/router';
 import { UserData } from '../../api/auth-api';
 import { AvatarInput } from '../../components/avatar-input';
 import UserController from '../../controllers/user-controller';
+import { ProfileBackButton } from '../../components/profile-back-button';
 
 interface ProfileProps extends UserData {}
 
@@ -23,6 +24,12 @@ const userFields = [
 
 class ProfilePageBase extends Block {
   protected init() {
+    this.children.back = new ProfileBackButton({
+      events: {
+        click: () => router.go('/chat'),
+      },
+    });
+
     this.children.form = this.createForm();
 
     this.children.buttons = [
