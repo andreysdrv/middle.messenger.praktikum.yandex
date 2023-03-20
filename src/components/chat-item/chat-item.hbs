@@ -4,12 +4,21 @@
         <div class='chat__list-content'>
             <p class='chat__list-from'>{{title}}</p>
             <p class='chat__list-preview'>
-                {{last_message}}
+                {{#with last_message}}
+                    {{#with user}}
+                        <span class='chat__list-preview-author'>{{ display_name }}:</span>
+                    {{/with}}
+                    {{content}}
+                {{/with}}
             </p>
         </div>
         <div class='chat__list-info'>
-            <div class='chat__list-timestamp'>{{timestamp}}</div>
-                <div class='chat__list-count'>{{unread_count}}</div>
+            <div class='chat__list-timestamp'>
+                {{#with last_message}}
+                    {{time}}
+                {{/with}}
+            </div>
+            <div class='chat__list-count'>{{unread_count}}</div>
         </div>
     </div>
 </li>

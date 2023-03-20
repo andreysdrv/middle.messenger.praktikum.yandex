@@ -1,9 +1,9 @@
 import Block from '../../utils/block';
 import template from './chat-message.hbs';
+import { Message } from '../../controllers/messages-controller';
 
-interface ChatMessageProps {
-    isOutgoing: boolean
-    message: string
+interface ChatMessageProps extends Message {
+  isOutgoing: boolean
 }
 
 export class ChatMessage extends Block {

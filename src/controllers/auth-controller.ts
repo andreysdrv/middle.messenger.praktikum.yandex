@@ -1,6 +1,7 @@
 import { AuthApi, SignInData, SignUpData } from '../api/auth-api';
 import store from '../utils/store';
 import router from '../utils/router';
+import MessagesController from './messages-controller';
 
 class AuthController {
   private api: AuthApi;
@@ -31,6 +32,7 @@ class AuthController {
 
   async logout() {
     try {
+      MessagesController.closeAll();
       await this.api.logout();
       router.go('/');
       store.set('user.data', undefined);

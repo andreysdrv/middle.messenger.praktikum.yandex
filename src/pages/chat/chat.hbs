@@ -17,13 +17,15 @@
             </ul>
         </sidebar>
         <div class='chat__feed'>
-            <div class='chat__feed-header'>
-                <div class='chat__feed-user'>
-                    <img src='{{ avatar }}' alt='Андрей' class='chat__feed-user-img'/>
-                    <p class="chat__feed-user-name">Андрей</p>
+                {{#if selectedChatState}}
+                <div class='chat__feed-header'>
+                    <div class='chat__feed-user'>
+                        <img src='{{#with selectedChatState }}{{ avatar }}{{/with}}' alt='{{#with selectedChatState }}{{ title }}{{/with}}' class='chat__feed-user-img'/>
+                        <p class="chat__feed-user-name">{{#with selectedChatState }}{{ title }}{{/with}}</p>
+                    </div>
+                    {{{ actions }}}
                 </div>
-                <button class='chat__feed-actions'></button>
-            </div>
+                {{/if}}
             <ul class='chat__feed-body'>
                 {{#each chatMessages}}
                     {{{ this }}}

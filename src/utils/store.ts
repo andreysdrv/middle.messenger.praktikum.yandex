@@ -2,7 +2,8 @@ import { UserData } from '../api/auth-api';
 import { set } from './helpers';
 import EventBus from './event-bus';
 import Block from './block';
-import { ChatsData } from '../api/chats-api';
+import { ChatData, ChatsData } from '../api/chats-api';
+import { Message } from '../controllers/messages-controller';
 
 interface State {
   user: {
@@ -15,9 +16,14 @@ interface State {
     error?: string
     isLoading?: boolean
   },
-  selectedChat?: number
+  selectedChatId?: number
+  selectedChatState?: ChatData
+  messages: Record<number, Message[]>
   modals: {
     createChat: {
+      isOpen: boolean
+    },
+    chatActions: {
       isOpen: boolean
     }
   }
@@ -35,7 +41,11 @@ class Store extends EventBus {
       createChat: {
         isOpen: false,
       },
+      chatActions: {
+        isOpen: false,
+      },
     },
+    messages: {},
   };
 
   getState(): State {
@@ -61,7 +71,7 @@ export const withStore = (mapStateToProps: (state: State) => any) => (
       propsFromState = mapStateToProps(store.getState());
       super({ ...props, ...propsFromState });
 
-      store.on(StoreEvent.Updated, (newState) => {
+      store.on(StoreEvent.Updated, (newState: any) => {
         const newPropsFromState = mapStateToProps(newState);
 
         // if (isEqual(propsFromState, newPropsFromState)) {
@@ -71,7 +81,6 @@ export const withStore = (mapStateToProps: (state: State) => any) => (
         propsFromState = { ...newPropsFromState };
 
         this.setProps({ ...propsFromState });
-        console.log({ ...propsFromState });
       });
     }
   };

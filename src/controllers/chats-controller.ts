@@ -1,5 +1,6 @@
 import { ChatsApi } from '../api/chats-api';
 import store from '../utils/store';
+import MessagesController from './messages-controller';
 
 class ChatsController {
   private api: ChatsApi;
@@ -12,6 +13,10 @@ class ChatsController {
     try {
       const chats = await this.api.read();
       store.set('chats.data', chats);
+
+      chats.forEach(async (chat) => {
+        await MessagesController.connect(chat.id, await this.getToken(chat.id));
+      });
     } catch (e) {
       console.error(e);
     }
@@ -37,7 +42,7 @@ class ChatsController {
   }
 
   selectChat(id: number) {
-    store.set('selectedChat', id);
+    store.set('selectedChatId', id);
   }
 
   openCreateChatModal() {
@@ -46,6 +51,18 @@ class ChatsController {
 
   closeCreateChatModal() {
     store.set('modals.createChat.isOpen', false);
+  }
+
+  openChatActionsModal() {
+    store.set('modals.chatActions.isOpen', true);
+  }
+
+  closeChatActionsModal() {
+    store.set('modals.chatActions.isOpen', false);
+  }
+
+  getToken(id: number) {
+    return this.api.getToken(id);
   }
 }
 
