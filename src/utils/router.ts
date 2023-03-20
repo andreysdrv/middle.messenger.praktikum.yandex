@@ -100,7 +100,6 @@ class Router {
   }
 
   public go(pathname: string) {
-    console.log(pathname);
     this.history.pushState({}, '', pathname);
 
     this._onRoute(pathname);

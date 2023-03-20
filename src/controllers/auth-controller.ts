@@ -14,7 +14,7 @@ class AuthController {
     try {
       await this.api.signup(data);
       await this.fetchUser();
-      router.go('/profile');
+      router.go('/chat');
     } catch (e) {
       console.error(e);
     }
@@ -23,7 +23,7 @@ class AuthController {
   async signin(data: SignInData) {
     try {
       await this.api.signin(data);
-      router.go('/profile');
+      router.go('/chat');
       this.fetchUser();
     } catch (e: any) {
       console.error(e);
