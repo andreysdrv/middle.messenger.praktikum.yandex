@@ -1,18 +1,25 @@
-<div class='chat__list-item'>
-    <img src='{{ avatar }}' alt='{{from}}' class='chat__list-user-img'/>
-    <div class='chat__list-content'>
-        <p class='chat__list-from'>{{from}}</p>
-        <p class='chat__list-preview'>
-            {{#unless isIncoming}}
-                <span class='chat__list-preview-isIncoming'>Вы: </span>
-            {{/unless}}
-            {{message}}
-        </p>
+<li class="chat__list-item-wrapper">
+    <div class='chat__list-item'>
+        <img src='https://ya-praktikum.tech/api/v2/resources{{ avatar }}' alt='{{ title }}' class='chat__list-user-img'/>
+        <div class='chat__list-content'>
+            <p class='chat__list-from'>{{title}}</p>
+            <p class='chat__list-preview'>
+                {{#with last_message}}
+                    {{#with user}}
+                        <span class='chat__list-preview-author'>{{ display_name }}:</span>
+                    {{/with}}
+                    {{content}}
+                {{/with}}
+            </p>
+        </div>
+        <div class='chat__list-info'>
+            <div class='chat__list-timestamp'>
+                {{#with last_message}}
+                    {{time}}
+                {{/with}}
+            </div>
+            <div class='chat__list-count'>{{unread_count}}</div>
+        </div>
     </div>
-    <div class='chat__list-info'>
-        <div class='chat__list-timestamp'>{{timestamp}}</div>
-        {{#if isIncoming}}
-            <div class='chat__list-count'>{{count}}</div>
-        {{/if}}
-    </div>
-</div>
+</li>
+

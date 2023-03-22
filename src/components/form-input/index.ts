@@ -14,14 +14,15 @@ interface FormInputProps {
 
 export class FormInput extends Block {
   constructor(props: FormInputProps) {
-    super('div', {
+    super({
       ...props,
       events: {
-        focusout: ({ target }) => {
+        focusout: (e: FocusEvent) => {
+          const target = e.target as HTMLInputElement;
           if (validator(target).isValid) {
-            this.children.error.setProps({ errorText: '' });
+            (this.children.error as InputError).setProps({ errorText: '' });
           } else {
-            this.children.error.setProps({ errorText: validator(target).error });
+            (this.children.error as InputError).setProps({ errorText: validator(target).error });
           }
         },
       },
@@ -29,14 +30,13 @@ export class FormInput extends Block {
   }
 
   init() {
-    this.element!.classList.add('form__input-wrapper');
-
     this.children.error = new InputError({
       name: this.props.name as string,
       errorText: '',
     });
   }
 
+  // @ts-ignore
   componentDidUpdate(oldProps, newProps): boolean {
     return oldProps.errorText !== newProps.errorText;
   }

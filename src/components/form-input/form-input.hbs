@@ -1,12 +1,14 @@
-<input
-    id={{id}}
-    name={{name}}
-    type={{type}}
-    value='{{value}}'
-    class='form__input'
-    placeholder='{{placeholder}}'
-    {{#if disabled}}
-        disabled
-    {{/if}}
->
-{{{ error }}}
+<div class="form__input-wrapper">
+    <input
+            id={{id}}
+            name={{name}}
+            type={{type}}
+            value='{{value}}'
+            class='form__input'
+            placeholder='{{placeholder}}'
+        {{#if disabled}}
+            disabled
+        {{/if}}
+    >
+    {{{ error }}}
+</div>
