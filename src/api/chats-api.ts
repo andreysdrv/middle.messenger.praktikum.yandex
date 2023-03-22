@@ -27,7 +27,7 @@ export class ChatsApi extends BaseAPI {
   }
 
   read() {
-    return this.http.get<ChatsData>('');
+    return this.http.get<ChatsData>('?limit=50');
   }
 
   create(data: {title: string}) {
@@ -42,6 +42,18 @@ export class ChatsApi extends BaseAPI {
     const response = await this.http.post<{ token: string }>(`/token/${id}`);
 
     return response.token;
+  }
+
+  getUsers(id: number) {
+    return this.http.get(`/${id}/users`);
+  }
+
+  addUsers(id: number, users: number[]) {
+    return this.http.put('/users', { users, chatId: id });
+  }
+
+  removeUsers(id: number, users: number[]) {
+    return this.http.delete('/users', { users, chatId: id });
   }
 
   update = undefined;

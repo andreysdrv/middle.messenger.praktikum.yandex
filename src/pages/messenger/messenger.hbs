@@ -1,0 +1,54 @@
+<main>
+
+    <div class='{{styles.chat__layout}}'>
+        <aside class='{{styles.chat__list}}'>
+            <div class='{{styles.chat__list-header}}'>
+                {{{ link }}}
+                <input
+                        type='search'
+                        placeholder='Поиск'
+                        class='{{styles.chat__list-header-input}}'
+                />
+            </div>
+            <ul class="{{styles.chat__list-body}}">
+                {{#each chatItems}}
+                    {{{ this }}}
+                {{/each}}
+                {{{ button }}}
+            </ul>
+        </aside>
+        <div class='{{styles.chat__feed}}'>
+                {{#if selectedChatState}}
+                <div class='{{styles.chat__feed-header}}'>
+                    <div class='{{styles.chat__feed-user}}'>
+                        <img src='https://ya-praktikum.tech/api/v2/resources{{#with selectedChatState }}{{ avatar }}{{/with}}'
+                             alt='{{#with selectedChatState }}{{ title }}{{/with}}'
+                             class='{{styles.chat__feed-user-img}}' />
+                        <p class="{{styles.chat__feed-user-name}}">{{#with selectedChatState }}{{ title }}{{/with}}</p>
+                        <div class="{{styles.chat__actions}}">
+                            {{#each actions}}
+                                {{{ this }}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            <ul class='{{styles.chat__feed-body}}'>
+                {{#each chatMessages}}
+                    {{{ this }}}
+                {{/each}}
+            </ul>
+            <div class='{{styles.chat__feed-footer}}'>
+                <form class='{{styles.chat__feed-form}}' name='message'>
+                    <button class='{{styles.chat__feed-attach}}'></button>
+                    <input type='text' name='message' id='message' placeholder='Сообщение' required class='{{styles.chat__feed-input}}'/>
+                    <button type='submit' class='{{styles.chat__feed-send}}'></button>
+                </form>
+            </div>
+                {{else}}
+                    <div class="{{styles.empty-state}}">Выберите чат из списка или создайте новый</div>
+                {{/if}}
+
+        </div>
+    </div>
+    {{{ modal }}}
+</main>

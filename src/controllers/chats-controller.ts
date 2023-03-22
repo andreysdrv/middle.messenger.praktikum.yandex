@@ -36,6 +36,7 @@ class ChatsController {
     try {
       await this.api.delete(id);
       await this.fetchChats();
+      store.set('selectedChatState', undefined);
     } catch (e) {
       console.error(e);
     }
@@ -53,16 +54,20 @@ class ChatsController {
     store.set('modals.createChat.isOpen', false);
   }
 
-  openChatActionsModal() {
-    store.set('modals.chatActions.isOpen', true);
-  }
-
-  closeChatActionsModal() {
-    store.set('modals.chatActions.isOpen', false);
-  }
-
   getToken(id: number) {
     return this.api.getToken(id);
+  }
+
+  getChatUsers(id: number) {
+    return this.api.getUsers(id);
+  }
+
+  addUserToChat(id: number, userId:number) {
+    return this.api.addUsers(id, [userId]);
+  }
+
+  removeUsersFromChat(id: number, userId:number) {
+    return this.api.removeUsers(id, [userId]);
   }
 }
 

@@ -5,7 +5,6 @@ import { FormInput } from '../../components/form-input';
 import { validator } from '../../utils/helpers';
 import { InputError } from '../../components/input-error';
 import AuthController from '../../controllers/auth-controller';
-import router from '../../utils/router';
 
 export class SignupPage extends Block {
   constructor() {
@@ -18,7 +17,7 @@ export class SignupPage extends Block {
       title: 'Регистрация',
       submitText: 'Создать аккаунт',
       redirectText: 'Войти',
-      redirectPath: '/signin',
+      redirectPath: '/sign-in',
       fields: [
         new FormInput({
           type: 'email',

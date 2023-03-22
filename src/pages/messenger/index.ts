@@ -1,8 +1,8 @@
 import Block from '../../utils/block';
-import template from './chat.hbs';
+import template from './messenger.hbs';
+import styles from './styles.module.pcss';
 import { ChatMessage } from '../../components/chat-message';
 import { ChatItem } from '../../components/chat-item/intex';
-import avatar from '../../assets/user.png';
 import { ProfileLink } from '../../components/profile-link';
 import ChatsController from '../../controllers/chats-controller';
 import { withStore } from '../../utils/store';
@@ -12,8 +12,10 @@ import { ModalWithForm } from '../../components/modal-with-form';
 import MessagesController, { Message } from '../../controllers/messages-controller';
 import { Form } from '../../components/form';
 import { FormInput } from '../../components/form-input';
+import { ChatActionButton } from '../../components/chat-action-button';
+import UserController from '../../controllers/user-controller';
 
-export class ChatPageBase extends Block {
+export class MessengerPageBase extends Block {
   constructor() {
     super({
       events: {
@@ -71,12 +73,17 @@ export class ChatPageBase extends Block {
   protected componentDidUpdate(_: any, newProps: any): boolean {
     this.children.chatItems = newProps.chats.data.map((chat: ChatData) => new ChatItem({
       ...chat,
+      last_message: chat.last_message !== null ? {
+        ...chat.last_message,
+        time: new Date(chat.last_message?.time).toLocaleString(),
+      } : null,
       events: {
         click: async () => {
           ChatsController.selectChat(chat.id);
         },
       },
     }));
+
     if (this.props.messages?.[`${this.props.selectedChatId}`]?.length > 0) {
       this.children.chatMessages = this.props.messages?.[`${this.props.selectedChatId}`]
         .map((message: Message) => new ChatMessage({
@@ -85,11 +92,44 @@ export class ChatPageBase extends Block {
         }));
     }
 
+    this.children.actions = [
+      new ChatActionButton({
+        label: 'Добавить пользователя',
+        events: {
+          click: async () => {
+            const login = prompt('Введите имя пользователя, которого хотите добавить в чат') || '';
+            const [user] = await UserController.getUserByLogin(login);
+            await ChatsController.addUserToChat(this.props.selectedChatId, user.id);
+            ChatsController.getChatUsers(this.props.selectedChatId);
+          },
+        },
+      }),
+      new ChatActionButton({
+        label: 'Удалить пользователя',
+        events: {
+          click: async () => {
+            const login = prompt('Введите имя пользователя, которого хотите удалить из чата') || '';
+            const [user] = await UserController.getUserByLogin(login);
+            await ChatsController.removeUsersFromChat(this.props.selectedChatId, user.id);
+            ChatsController.getChatUsers(this.props.selectedChatId);
+          },
+        },
+      }),
+      new ChatActionButton({
+        label: 'Удалить чат',
+        events: {
+          click: () => {
+            ChatsController.delete(this.props.selectedChatId);
+          },
+        },
+      }),
+    ];
+
     return true;
   }
 
   render() {
-    return this.compile(template, { ...this.props, avatar });
+    return this.compile(template, { ...this.props, styles });
   }
 }
 
@@ -101,4 +141,4 @@ const withChats = withStore((state) => ({
   user: state.user.data?.id,
 }));
 
-export const ChatPage = withChats(ChatPageBase);
+export const MessengerPage = withChats(MessengerPageBase);

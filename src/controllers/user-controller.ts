@@ -45,6 +45,18 @@ class UserController {
       console.error(e);
     }
   }
+
+  async getUserByLogin(login: string) {
+    if (!login) {
+      throw new Error('Некорректрый ввод');
+    }
+    try {
+      return await this.api.getUserByLogin(login);
+    } catch (e) {
+      console.error(e);
+      return [];
+    }
+  }
 }
 
 export default new UserController();

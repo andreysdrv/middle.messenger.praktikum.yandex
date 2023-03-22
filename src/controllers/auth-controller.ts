@@ -14,7 +14,7 @@ class AuthController {
     try {
       await this.api.signup(data);
       await this.fetchUser();
-      router.go('/chat');
+      router.go('/messenger');
     } catch (e) {
       console.error(e);
     }
@@ -23,9 +23,9 @@ class AuthController {
   async signin(data: SignInData) {
     try {
       await this.api.signin(data);
-      router.go('/chat');
+      router.go('/messenger');
       this.fetchUser();
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
     }
   }
@@ -36,7 +36,7 @@ class AuthController {
       await this.api.logout();
       router.go('/');
       store.set('user.data', undefined);
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
     }
   }
@@ -47,7 +47,7 @@ class AuthController {
       const user = await this.api.getUser();
       store.set('user.data', user);
       store.set('user.isLoading', false);
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(e);
       throw new Error(e);
     }

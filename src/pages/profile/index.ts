@@ -26,7 +26,7 @@ class ProfilePageBase extends Block {
   protected init() {
     this.children.back = new ProfileBackButton({
       events: {
-        click: () => router.go('/chat'),
+        click: () => router.go('/messenger'),
       },
     });
 
@@ -37,7 +37,7 @@ class ProfilePageBase extends Block {
         label: 'Изменить данные',
         events: {
           click: () => {
-            router.go('/profile-info');
+            router.go('/settings');
           },
         },
       }),
@@ -45,7 +45,7 @@ class ProfilePageBase extends Block {
         label: 'Изменить пароль',
         events: {
           click: () => {
-            router.go('/profile-password');
+            router.go('/password');
           },
         },
       }),

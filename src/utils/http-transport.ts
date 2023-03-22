@@ -1,3 +1,5 @@
+import { queryString } from './helpers';
+
 export enum Method {
     Get = 'Get',
     Post = 'Post',
@@ -60,7 +62,7 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, method === Method.Get && !!data ? `${url}${queryString(data)}` : url);
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {

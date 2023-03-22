@@ -1,7 +1,7 @@
 import Router from './utils/router';
 import { SigninPage } from './pages/signin';
 import { SignupPage } from './pages/signup';
-import { ChatPage } from './pages/chat';
+import { MessengerPage } from './pages/messenger';
 import { ProfilePage } from './pages/profile';
 import { ProfileEditInfoPage } from './pages/profile-edit-info';
 import { ProfileEditPasswordPage } from './pages/profile-edit-password';
@@ -9,12 +9,12 @@ import AuthController from './controllers/auth-controller';
 
 enum Routes {
     Index = '/',
-    SignUp = '/signup',
-    SignIn = '/signin',
-    Chat = '/chat',
+    SignUp = '/sign-up',
+    SignIn = '/sign-in',
+    Messenger = '/messenger',
     Profile = '/profile',
-    ProfileEditInfo = '/profile-info',
-    ProfileEditPassword = '/profile-password',
+    Settings = '/settings',
+    Password = '/password',
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -22,18 +22,19 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Index, SigninPage)
     .use(Routes.SignUp, SignupPage)
     .use(Routes.SignIn, SigninPage)
-    .use(Routes.Chat, ChatPage)
+    .use(Routes.Messenger, MessengerPage)
     .use(Routes.Profile, ProfilePage)
-    .use(Routes.ProfileEditInfo, ProfileEditInfoPage)
-    .use(Routes.ProfileEditPassword, ProfileEditPasswordPage);
+    .use(Routes.Settings, ProfileEditInfoPage)
+    .use(Routes.Password, ProfileEditPasswordPage);
 
-  let isProtectedRoute = true;
+  let isProtectedRoute: boolean;
 
   switch (window.location.pathname) {
     case Routes.Index:
     case Routes.SignUp:
       isProtectedRoute = false;
       break;
+    default: isProtectedRoute = true;
   }
 
   try {

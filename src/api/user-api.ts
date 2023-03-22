@@ -27,6 +27,10 @@ export class UserApi extends BaseAPI {
     return this.http.put('/password', data);
   }
 
+  getUserByLogin(login: string) {
+    return this.http.post<UserData[]>('/search', { login });
+  }
+
   create = undefined;
 
   read = undefined;

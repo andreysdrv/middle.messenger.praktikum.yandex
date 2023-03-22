@@ -23,9 +23,6 @@ interface State {
     createChat: {
       isOpen: boolean
     },
-    chatActions: {
-      isOpen: boolean
-    }
   }
 }
 
@@ -39,9 +36,6 @@ class Store extends EventBus {
     chats: {},
     modals: {
       createChat: {
-        isOpen: false,
-      },
-      chatActions: {
         isOpen: false,
       },
     },

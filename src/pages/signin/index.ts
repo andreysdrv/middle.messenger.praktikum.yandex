@@ -17,7 +17,7 @@ export class SigninPage extends Block {
       title: 'Вход',
       submitText: 'Войти',
       redirectText: 'Ещё не зарегистрированы?',
-      redirectPath: '/signup',
+      redirectPath: '/sign-up',
       fields: [
         new FormInput({
           type: 'text',
