@@ -1,76 +1,55 @@
-import Handlebars from 'handlebars/dist/handlebars.runtime';
-
-import Navigation from './components/navigation/navigation.hbs';
-import FormInput from './components/form-input/form-input.hbs';
-import ChatItem from './components/chat-item/chat-item.hbs';
-import ChatMessage from './components/chat-message/chat-message.hbs';
-import Error from './components/error/error.hbs';
-
-import avatar from './assets/user.png';
-import Block from './utils/block';
+import Router from './utils/router';
 import { SigninPage } from './pages/signin';
 import { SignupPage } from './pages/signup';
-import { ChatPage } from './pages/chat';
+import { MessengerPage } from './pages/messenger';
 import { ProfilePage } from './pages/profile';
 import { ProfileEditInfoPage } from './pages/profile-edit-info';
 import { ProfileEditPasswordPage } from './pages/profile-edit-password';
-import { NotFoundPage } from './pages/not-found';
-import { ServerErrorPage } from './pages/server-error';
+import AuthController from './controllers/auth-controller';
 
-Handlebars.registerPartial({
-  Navigation,
-  FormInput,
-  ChatItem,
-  ChatMessage,
-  Error,
-});
-
-function render(html) {
-  const app = document.querySelector('#root');
-
-  if (app === null) {
-    return;
-  }
-
-  app.append(html.getContent()!);
-  html.dispatchComponentDidMount();
+enum Routes {
+    Index = '/',
+    SignUp = '/sign-up',
+    SignIn = '/sign-in',
+    Messenger = '/messenger',
+    Profile = '/profile',
+    Settings = '/settings',
+    Password = '/password',
 }
 
-const ROUTES: Record<'SIGNIN' |
-    'SIGNUP' |
-    'CHAT' |
-    'PROFILE' |
-    'PROFILE_EDIT' |
-    'PASSWORD_EDIT' |
-    'NOT_FOUND' |
-    'SERVER_ERROR', Block> = {
-      SIGNIN: new SigninPage(),
-      SIGNUP: new SignupPage(),
-      CHAT: new ChatPage({ avatar }),
-      PROFILE: new ProfilePage({ avatar }),
-      PROFILE_EDIT: new ProfileEditInfoPage(),
-      PASSWORD_EDIT: new ProfileEditPasswordPage(),
-      NOT_FOUND: new NotFoundPage(),
-      SERVER_ERROR: new ServerErrorPage(),
-    };
+window.addEventListener('DOMContentLoaded', async () => {
+  Router
+    .use(Routes.Index, SigninPage)
+    .use(Routes.SignUp, SignupPage)
+    .use(Routes.SignIn, SigninPage)
+    .use(Routes.Messenger, MessengerPage)
+    .use(Routes.Profile, ProfilePage)
+    .use(Routes.Settings, ProfileEditInfoPage)
+    .use(Routes.Password, ProfileEditPasswordPage);
 
-declare global {
-  interface Window {
-    goTo: (route: string) => void
+  let isProtectedRoute: boolean;
+
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.SignUp:
+      isProtectedRoute = false;
+      break;
+    default: isProtectedRoute = true;
   }
-}
 
-window.goTo = function (route) {
-  const page = ROUTES[route];
+  try {
+    await AuthController.fetchUser();
 
-  // Временный костыль для для очистки содержимого страницы
-  const app = document.querySelector('#root');
-  if (app === null) return;
-  app.innerHTML = '';
+    Router.start();
 
-  render(page);
-};
+    if (!isProtectedRoute) {
+      Router.go(Routes.Profile);
+    }
+  } catch (e) {
+    Router.start();
 
-window.addEventListener('DOMContentLoaded', () => {
-  render(ROUTES.SIGNIN);
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
+  }
 });

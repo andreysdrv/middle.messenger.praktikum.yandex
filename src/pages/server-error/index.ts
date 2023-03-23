@@ -4,7 +4,7 @@ import { Error } from '../../components/error';
 
 export class ServerErrorPage extends Block {
   constructor() {
-    super('main');
+    super({});
   }
 
   protected init() {

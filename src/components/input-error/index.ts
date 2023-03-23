@@ -8,14 +8,10 @@ interface InputErrorProps {
 
 export class InputError extends Block {
   constructor(props: InputErrorProps) {
-    super('span', props);
+    super(props);
   }
 
-  init() {
-    this.element!.classList.add('form__input-error');
-    this.element!.classList.add(`${this.props.name}-input-error`);
-  }
-
+  // @ts-ignore
   componentDidUpdate(oldProps, newProps): boolean {
     return oldProps.errorText !== newProps.errorText;
   }

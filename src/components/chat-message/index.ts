@@ -1,22 +1,14 @@
 import Block from '../../utils/block';
 import template from './chat-message.hbs';
+import { Message } from '../../controllers/messages-controller';
 
-interface ChatMessageProps {
-    isOutgoing: boolean
-    message: string
+interface ChatMessageProps extends Message {
+  isOutgoing: boolean
 }
 
 export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
-    super('li', props);
-  }
-
-  init() {
-    this.element!.classList.add('chat__feed-message');
-
-    if (this.props.isOutgoing) {
-     this.element!.classList.add('chat__feed-message_outgoing');
-    }
+    super(props);
   }
 
   render() {

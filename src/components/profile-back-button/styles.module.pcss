@@ -1,0 +1,26 @@
+@import "../../styles/variables.pcss";
+
+.profile__back-button {
+    width: 28px;
+    height: 28px;
+    background: url('../../assets/arrow.svg') no-repeat center center $primary;
+    transform: rotate(180deg);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    transition: 0.175s;
+
+    &:hover {
+        cursor: pointer;
+        background-color: $darken-primary;
+    }
+
+    &-wrapper {
+        width: 64px;
+        background-color: #fbfbfb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid #eaeaea;
+    }
+}

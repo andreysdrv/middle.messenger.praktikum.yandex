@@ -10,11 +10,7 @@ interface ErrorProps {
 
 export class Error extends Block {
   constructor(props: ErrorProps) {
-    super('div', props);
-  }
-
-  init() {
-    this.element!.classList.add('error');
+    super(props);
   }
 
   render() {
