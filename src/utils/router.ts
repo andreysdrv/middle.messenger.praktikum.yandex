@@ -67,7 +67,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block) {
+  public use(pathname: string, block: BlockConstructable) {
     const route = new Route(pathname, block, this.rootQuery);
     this.routes.push(route);
 

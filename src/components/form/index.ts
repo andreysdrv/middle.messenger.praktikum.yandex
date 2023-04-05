@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './form.hbs';
+import styles from './form.module.pcss';
 import { FormInput } from '../form-input';
 import { Link } from '../link';
 
@@ -29,6 +30,6 @@ export class Form extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

@@ -2,7 +2,7 @@ const { JSDOM } = require('jsdom');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 
-const { window } = new JSDOM('<div id="app"></div>', {
+const { window } = new JSDOM('<div id="root"></div>', {
   url: 'http://localhost:3000',
 });
 

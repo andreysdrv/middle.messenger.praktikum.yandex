@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './chat-item.hbs';
+import styles from './chat-item.module.pcss';
 import { ChatData } from '../../api/chats-api';
 
 interface ChatItemProps extends ChatData {
@@ -14,6 +15,6 @@ export class ChatItem extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

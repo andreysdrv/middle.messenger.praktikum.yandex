@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './profile-edit-info.hbs';
+import styles from './styles.module.pcss';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
 import { validator } from '../../utils/helpers';
@@ -87,7 +88,7 @@ export class ProfileEditInfoPageBase extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
 

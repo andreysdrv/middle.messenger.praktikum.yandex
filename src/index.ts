@@ -1,3 +1,4 @@
+import './styles/index.pcss';
 import Router from './utils/router';
 import { SigninPage } from './pages/signin';
 import { SignupPage } from './pages/signup';

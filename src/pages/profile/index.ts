@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './profile.hbs';
+import styles from './profile.module.pcss';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
 import { ProfileButton } from '../../components/profile-button';
@@ -105,7 +106,7 @@ class ProfilePageBase extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
 

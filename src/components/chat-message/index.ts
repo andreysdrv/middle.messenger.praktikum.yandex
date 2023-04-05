@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './chat-message.hbs';
+import styles from './chat-message.module.pcss';
 import { Message } from '../../controllers/messages-controller';
 
 interface ChatMessageProps extends Message {
@@ -12,6 +13,6 @@ export class ChatMessage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

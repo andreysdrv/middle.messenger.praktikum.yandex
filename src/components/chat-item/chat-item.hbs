@@ -1,24 +1,24 @@
-<li class="chat__list-item-wrapper">
-    <div class='chat__list-item'>
-        <img src='https://ya-praktikum.tech/api/v2/resources{{ avatar }}' alt='{{ title }}' class='chat__list-user-img'/>
-        <div class='chat__list-content'>
-            <p class='chat__list-from'>{{title}}</p>
-            <p class='chat__list-preview'>
+<li class="{{styles.chat__list-item-wrapper}}">
+    <div class='{{styles.chat__list-item}}'>
+        <img src='https://ya-praktikum.tech/api/v2/resources{{ avatar }}' alt='{{ title }}' class='{{styles.chat__list-user-img}}'/>
+        <div class='{{styles.chat__list-content}}'>
+            <p class='{{styles.chat__list-from}}'>{{title}}</p>
+            <p class='{{styles.chat__list-preview}}'>
                 {{#with last_message}}
                     {{#with user}}
-                        <span class='chat__list-preview-author'>{{ display_name }}:</span>
+                        <span class='{{styles.chat__list-preview-author}}'>{{ display_name }}:</span>
                     {{/with}}
                     {{content}}
                 {{/with}}
             </p>
         </div>
-        <div class='chat__list-info'>
-            <div class='chat__list-timestamp'>
+        <div class='{{styles.chat__list-info}}'>
+            <div class='{{styles.chat__list-timestamp}}'>
                 {{#with last_message}}
                     {{time}}
                 {{/with}}
             </div>
-            <div class='chat__list-count'>{{unread_count}}</div>
+            <div class='{{styles.chat__list-count}}'>{{unread_count}}</div>
         </div>
     </div>
 </li>

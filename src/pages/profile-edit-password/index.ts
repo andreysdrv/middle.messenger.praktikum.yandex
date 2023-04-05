@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './profile-edit-password.hbs';
+import styles from './styles.module.pcss';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
 import { UserPasswordData } from '../../api/user-api';
@@ -67,6 +68,6 @@ export class ProfileEditPasswordPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

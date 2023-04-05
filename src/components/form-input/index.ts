@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './form-input.hbs';
+import styles from './form-input.module.pcss';
 import { InputError } from '../input-error';
 import { validator } from '../../utils/helpers';
 
@@ -42,6 +43,6 @@ export class FormInput extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
