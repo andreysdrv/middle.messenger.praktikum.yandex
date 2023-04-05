@@ -32,7 +32,7 @@ export class ProfileEditInfoPageBase extends Block {
     this.children.form = this.createForm();
   }
 
-  protected componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps): boolean {
+  protected componentDidUpdate(): boolean {
     this.children.form = this.createForm();
 
     return true;
@@ -72,6 +72,7 @@ export class ProfileEditInfoPageBase extends Block {
   handleSubmit() {
     const values: Record<string, string> = {};
 
+    // @ts-ignore
     (this.children.form.children.fields as FormInput[]).forEach((field) => {
       const input = field.element!.querySelector('input') as HTMLInputElement;
 
@@ -84,6 +85,7 @@ export class ProfileEditInfoPageBase extends Block {
       values[input.name] = input!.value;
     });
 
+    // @ts-ignore
     UserController.editUserInfo(values);
   }
 
@@ -94,6 +96,7 @@ export class ProfileEditInfoPageBase extends Block {
 
 const withUser = withStore((state) => {
   const userData = state.user.data || {};
+  // @ts-ignore
   userData.isLoading = state.user.isLoading;
 
   return userData;

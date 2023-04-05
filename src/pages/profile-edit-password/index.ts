@@ -30,6 +30,7 @@ export class ProfileEditPasswordPage extends Block {
   handleSubmit() {
     const values: Record<string, string> = {};
 
+    // @ts-ignore
     (this.children.form.children.fields as FormInput[]).forEach((field) => {
       const input = field.element!.querySelector('input') as HTMLInputElement;
 
@@ -42,6 +43,7 @@ export class ProfileEditPasswordPage extends Block {
       values[input.name] = input!.value;
     });
 
+    // @ts-ignore
     UserController.editUserPassword(values);
   }
 

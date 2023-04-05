@@ -62,7 +62,7 @@ class ProfilePageBase extends Block {
     ];
   }
 
-  protected componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps): boolean {
+  protected componentDidUpdate(): boolean {
     this.children.form = this.createForm();
 
     return true;
@@ -112,6 +112,7 @@ class ProfilePageBase extends Block {
 
 const withUser = withStore((state) => {
   const userData = state.user.data || {};
+  // @ts-ignore
   userData.isLoading = state.user.isLoading;
 
   return userData;
