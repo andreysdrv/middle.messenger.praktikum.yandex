@@ -2,7 +2,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import HTTPTransport from './http-transport';
 
-describe.only('HTTPTransport class', () => {
+describe('HTTPTransport class', () => {
   let requests: sinon.SinonFakeXMLHttpRequest[] = [];
   beforeEach(() => {
     const XHR = sinon.useFakeXMLHttpRequest();

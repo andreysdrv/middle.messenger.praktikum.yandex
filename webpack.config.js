@@ -10,6 +10,8 @@ const config = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    clean: true,
   },
   devServer: {
     open: true,
@@ -17,9 +19,7 @@ const config = {
     port: 4000,
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
   ],
   module: {
     rules: [
