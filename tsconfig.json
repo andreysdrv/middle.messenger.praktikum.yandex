@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "outDir": "dist",
     "target": "ESNext",
@@ -9,6 +12,7 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "lib": [
       "ESNext",
       "DOM"

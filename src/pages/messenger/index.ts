@@ -73,6 +73,7 @@ export class MessengerPageBase extends Block {
   protected componentDidUpdate(_: any, newProps: any): boolean {
     this.children.chatItems = newProps.chats.data.map((chat: ChatData) => new ChatItem({
       ...chat,
+      // @ts-ignore
       last_message: chat.last_message !== null ? {
         ...chat.last_message,
         time: new Date(chat.last_message?.time).toLocaleString(),

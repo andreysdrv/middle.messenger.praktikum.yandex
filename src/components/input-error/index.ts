@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './input-error.hbs';
+import styles from './input-error.module.pcss';
 
 interface InputErrorProps {
     name: string
@@ -17,6 +18,6 @@ export class InputError extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

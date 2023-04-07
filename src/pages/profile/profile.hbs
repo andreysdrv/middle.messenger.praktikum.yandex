@@ -1,13 +1,13 @@
 <main>
-    <div class='profile'>
+    <div class='{{styles.profile}}'>
         {{{back}}}
-        <div class='profile__info'>
+        <div class='{{styles.profile__info}}'>
             {{#if isLoading }}
                 <h1>Загружаем...</h1>
             {{ else }}
             <div>
                 {{{ form }}}
-                <div class="profile__form-footer">
+                <div class="{{styles.profile__form-footer}}">
                     {{#each buttons}}
                         {{{ this }}}
                     {{/each}}

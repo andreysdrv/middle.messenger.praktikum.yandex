@@ -1,18 +1,18 @@
-<form class="form" name="{{ name }}">
+<form class="{{styles.form}}" name="{{ name }}">
     {{#if avatar}}
         {{{ avatar }}}
     {{/if}}
     {{#if title}}
-        <h2 class='form__header'>{{ title }}</h2>
+        <h2 class='{{styles.form__header}}'>{{ title }}</h2>
     {{/if}}
-    <div class="form__body">
+    <div class="{{styles.form__body}}">
         {{# each fields }}
             {{{ this }}}
         {{/ each }}
     </div>
     {{#if submitText }}
-        <div class='form__footer'>
-            <button type='submit' class='form__footer-button'>{{ submitText }}</button>
+        <div class='{{styles.form__footer}}'>
+            <button type='submit' class='{{styles.form__footer-button}}'>{{ submitText }}</button>
             {{#if redirectText}}
             {{{ link }}}
             {{/if}}

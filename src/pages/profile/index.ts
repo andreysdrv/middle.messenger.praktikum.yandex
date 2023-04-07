@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './profile.hbs';
+import styles from './profile.module.pcss';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
 import { ProfileButton } from '../../components/profile-button';
@@ -61,7 +62,7 @@ class ProfilePageBase extends Block {
     ];
   }
 
-  protected componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps): boolean {
+  protected componentDidUpdate(): boolean {
     this.children.form = this.createForm();
 
     return true;
@@ -105,12 +106,13 @@ class ProfilePageBase extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
 
 const withUser = withStore((state) => {
   const userData = state.user.data || {};
+  // @ts-ignore
   userData.isLoading = state.user.isLoading;
 
   return userData;

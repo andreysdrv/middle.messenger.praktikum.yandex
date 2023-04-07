@@ -49,7 +49,7 @@ class AuthController {
       store.set('user.isLoading', false);
     } catch (e: unknown) {
       console.error(e);
-      throw new Error(e);
+      throw new Error(`${e}`);
     }
   }
 }

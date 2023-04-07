@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './error.hbs';
+import styles from './error.module.pcss';
 
 interface ErrorProps {
     code: number
@@ -14,6 +15,6 @@ export class Error extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }

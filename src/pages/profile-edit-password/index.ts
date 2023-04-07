@@ -1,5 +1,6 @@
 import Block from '../../utils/block';
 import template from './profile-edit-password.hbs';
+import styles from './styles.module.pcss';
 import { FormInput } from '../../components/form-input';
 import { Form } from '../../components/form';
 import { UserPasswordData } from '../../api/user-api';
@@ -29,6 +30,7 @@ export class ProfileEditPasswordPage extends Block {
   handleSubmit() {
     const values: Record<string, string> = {};
 
+    // @ts-ignore
     (this.children.form.children.fields as FormInput[]).forEach((field) => {
       const input = field.element!.querySelector('input') as HTMLInputElement;
 
@@ -41,6 +43,7 @@ export class ProfileEditPasswordPage extends Block {
       values[input.name] = input!.value;
     });
 
+    // @ts-ignore
     UserController.editUserPassword(values);
   }
 
@@ -67,6 +70,6 @@ export class ProfileEditPasswordPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props);
+    return this.compile(template, { ...this.props, styles });
   }
 }
